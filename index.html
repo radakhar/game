@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>رد آخر - بازی معمایی نوآر</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="overlay"></div>
+    <div class="container">
+        <header>
+            <div class="game-title">
+                <h1>رَدِّ آخَر</h1>
+                <div class="subtitle">شهر زوال · حقیقت گمشده</div>
+            </div>
+            <div class="stage-indicator">
+                <span id="stageLabel">مرحله</span>
+                <span id="stageNumber">۱</span>
+                <span>از</span>
+                <span id="totalStages">۵</span>
+            </div>
+        </header>
+
+        <main>
+            <div class="story-panel" id="storyPanel">
+                <div class="atmosphere-line"></div>
+                <div class="narrative-text" id="narrativeText">
+                    <!-- داستان مرحله اینجا نمایش داده می‌شود -->
+                </div>
+                <div class="clue-hint" id="clueHint">
+                    <!-- سرنخ‌های به دست آمده -->
+                </div>
+            </div>
+
+            <div class="mystery-box">
+                <div class="puzzle-title" id="puzzleTitle">معمای مرحله</div>
+                <div class="puzzle-question" id="puzzleQuestion">
+                    سوال اصلی اینجا ظاهر می‌شود...
+                </div>
+                <div class="options-container" id="optionsContainer">
+                    <!-- گزینه‌ها با دکمه -->
+                </div>
+            </div>
+
+            <div class="feedback-area" id="feedbackArea">
+                <!-- پیام بازخورد -->
+            </div>
+
+            <div class="action-buttons">
+                <button id="resetGameBtn" class="reset-btn">🔄 شروع مجدد</button>
+                <button id="continueBtn" class="continue-btn" disabled>➡ ادامه ماجرا</button>
+            </div>
+        </main>
+
+        <footer>
+            <div class="clues-collected">
+                <span>🔍 سرنخ‌های یافت شده:</span>
+                <span id="cluesList">هیچ</span>
+            </div>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

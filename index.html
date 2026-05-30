@@ -3,36 +3,73 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <title>رد آخر - بازی معمایی نوآر | نسخه نخبه</title>
+    <title>رد آخر - بازی معمایی جنایی | نوآر سیاه</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;600;700;900&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="fog-overlay"></div>
-    <div class="noise-overlay"></div>
+    <div class="crime-scene-overlay"></div>
+    <div class="film-grain"></div>
+    <div class="vignette"></div>
     
+    <audio id="bgMusicMenu" loop>
+        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="bgMusicNormal" loop>
+        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="bgMusicTension" loop>
+        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="clickSound">
+        <source src="https://www.soundjay.com/misc/sounds/button-click-01.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="correctSound">
+        <source src="https://www.soundjay.com/misc/sounds/bell-ringing-05.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="wrongSound">
+        <source src="https://www.soundjay.com/misc/sounds/failure-drum.mp3" type="audio/mpeg">
+    </audio>
+
     <div class="game-wrapper">
-        <aside class="stage-map-panel" id="stageMapPanel">
-            <div class="map-header">
-                <h3>🗺️ نقشهٔ زوال</h3>
-                <button id="toggleMapBtn" class="toggle-map">◀</button>
+        <aside class="investigation-panel" id="investigationPanel">
+            <div class="panel-header">
+                <h3>🕵️ دفتر کارآگاهی</h3>
+                <button id="togglePanelBtn" class="toggle-panel">◀</button>
             </div>
-            <div class="map-stages" id="mapStagesContainer">
-                <!-- مراحل به صورت دایره و خط وصل -->
+            
+            <div class="evidence-board">
+                <div class="evidence-title">شواهد صحنه</div>
+                <div id="evidenceList" class="evidence-list">
+                    <div class="empty-evidence">هیچ مدرکی هنوز ثبت نشده</div>
+                </div>
             </div>
+            
+            <div class="suspect-profile">
+                <div class="evidence-title">🔍 پروفایل مظنون</div>
+                <div id="suspectText">در حال بررسی...</div>
+            </div>
+            
             <div class="stats-panel">
                 <div class="stat-item">
-                    <span>🧠 نفوذ ذهن</span>
-                    <span id="insightScore">0</span>
+                    <span>🕵️ حس کارآگاهی</span>
+                    <span id="detectiveScore">۰</span>
                 </div>
                 <div class="stat-item">
-                    <span>🔍 سرنخ‌ها</span>
-                    <span id="clueCount">0</span>
+                    <span>📎 مدارک</span>
+                    <span id="clueCount">۰</span>
                 </div>
                 <div class="stat-item">
-                    <span>⏱️ زمان فکری</span>
-                    <span id="timerDisplay">--</span>
+                    <span>🎯 دقت</span>
+                    <span id="accuracyPercent">۱۰۰%</span>
                 </div>
+            </div>
+            
+            <button id="sixthSenseBtn" class="sixth-sense-btn">🔮 حس ششم (کمک)</button>
+            
+            <div class="music-control">
+                <span>🎵 موسیقی</span>
+                <button id="musicToggleBtn" class="music-toggle">🔇 قطع</button>
             </div>
         </aside>
 
@@ -40,14 +77,10 @@
             <header>
                 <div class="game-title">
                     <h1>رَدِّ آخَر</h1>
-                    <div class="subtitle">شهر زوال · حقیقت گمشده</div>
-                </div>
-                <div class="header-controls">
-                    <div class="difficulty-badge" id="difficultyBadge">نخبه</div>
-                    <button id="toggleTimerBtn" class="timer-toggle">⏱️ فعال‌سازی تایمر</button>
+                    <div class="subtitle">شهر زوال · پروندهٔ بسته</div>
                 </div>
                 <div class="stage-indicator">
-                    <span id="stageLabel">مرحله</span>
+                    <span>پرونده</span>
                     <span id="stageNumber">۱</span>
                     <span>از</span>
                     <span id="totalStages">۵</span>
@@ -55,19 +88,23 @@
             </header>
 
             <main>
-                <div class="atmosphere-sensor" id="atmosphereSensor">
-                    <span id="scentText">بوی باران و فلز زنگ‌زده</span>
-                    <span id="soundText">🔊 صدای قطره‌های باران روی آسفالت</span>
+                <div class="crime-location" id="crimeLocation">
+                    <span id="locationIcon">📍</span>
+                    <span id="locationName">کافه آخرین پناه</span>
+                    <span id="timeTag">۰۳:۴۲ بامداد</span>
                 </div>
 
                 <div class="story-panel" id="storyPanel">
-                    <div class="atmosphere-line"></div>
+                    <div class="blood-stain"></div>
                     <div class="narrative-text" id="narrativeText"></div>
                     <div class="clue-hint" id="clueHint"></div>
                 </div>
 
                 <div class="mystery-box">
-                    <div class="puzzle-title" id="puzzleTitle">معمای مرحله</div>
+                    <div class="puzzle-header">
+                        <div class="puzzle-title" id="puzzleTitle">بازجویی</div>
+                        <div class="difficulty-tag" id="difficultyTag">سخت</div>
+                    </div>
                     <div class="puzzle-question" id="puzzleQuestion"></div>
                     <div class="options-container" id="optionsContainer"></div>
                 </div>
@@ -75,19 +112,21 @@
                 <div class="feedback-area" id="feedbackArea"></div>
 
                 <div class="action-buttons">
-                    <button id="resetGameBtn" class="reset-btn">🔄 شروع مجدد</button>
-                    <button id="continueBtn" class="continue-btn" disabled>➡ ادامه ماجرا</button>
+                    <button id="resetGameBtn" class="reset-btn">🔄 بستن پرونده و شروع مجدد</button>
+                    <button id="continueBtn" class="continue-btn" disabled>➡ صحنه بعدی</button>
                 </div>
             </main>
 
             <footer>
                 <div class="clues-collected">
-                    <span>📜 دفترچه سرنخ‌ها:</span>
+                    <span>📋 گزارش سرنخ‌ها:</span>
                     <div id="cluesList" class="clues-list-scroll"></div>
                 </div>
             </footer>
         </div>
     </div>
+
+    <div class="save-toast" id="saveToast">💾 پیشرفت ذخیره شد</div>
 
     <script src="script.js"></script>
 </body>

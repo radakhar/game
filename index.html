@@ -3,130 +3,112 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <title>رد آخر - بازی معمایی جنایی | نوآر سیاه</title>
+    <title>رد آخر - بازی کارآگاهی جنایی</title>
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="crime-scene-overlay"></div>
-    <div class="film-grain"></div>
+    <div class="scene-overlay"></div>
     <div class="vignette"></div>
-    
-    <audio id="bgMusicMenu" loop>
-        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
-    </audio>
-    <audio id="bgMusicNormal" loop>
-        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3" type="audio/mpeg">
-    </audio>
-    <audio id="bgMusicTension" loop>
-        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3" type="audio/mpeg">
-    </audio>
-    <audio id="clickSound">
-        <source src="https://www.soundjay.com/misc/sounds/button-click-01.mp3" type="audio/mpeg">
-    </audio>
-    <audio id="correctSound">
-        <source src="https://www.soundjay.com/misc/sounds/bell-ringing-05.mp3" type="audio/mpeg">
-    </audio>
-    <audio id="wrongSound">
-        <source src="https://www.soundjay.com/misc/sounds/failure-drum.mp3" type="audio/mpeg">
-    </audio>
 
     <div class="game-wrapper">
-        <aside class="investigation-panel" id="investigationPanel">
-            <div class="panel-header">
-                <h3>🕵️ دفتر کارآگاهی</h3>
-                <button id="togglePanelBtn" class="toggle-panel">◀</button>
+        <aside class="case-panel">
+            <div class="case-header">
+                <h3>پرونده: زوال</h3>
+                <div class="case-badge">محرمانه</div>
             </div>
             
-            <div class="evidence-board">
-                <div class="evidence-title">شواهد صحنه</div>
+            <div class="case-stats">
+                <div class="stat-card">
+                    <span class="stat-label">اعتبار کارآگاهی</span>
+                    <span class="stat-value" id="detectiveCredit">0</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-label">تمرکز ذهنی</span>
+                    <span class="stat-value" id="mentalFocus">100</span>
+                    <div class="focus-bar"><div class="focus-fill" id="focusFill" style="width:100%"></div></div>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-label">مدارک یافت شده</span>
+                    <span class="stat-value" id="evidenceCount">0</span>
+                </div>
+            </div>
+            
+            <div class="evidence-section">
+                <div class="section-title">مدارک و سرنخ‌ها</div>
                 <div id="evidenceList" class="evidence-list">
-                    <div class="empty-evidence">هیچ مدرکی هنوز ثبت نشده</div>
+                    <div class="empty-hint">هنوز مدرکی ثبت نشده</div>
                 </div>
             </div>
             
-            <div class="suspect-profile">
-                <div class="evidence-title">🔍 پروفایل مظنون</div>
-                <div id="suspectText">در حال بررسی...</div>
+            <div class="suspect-section">
+                <div class="section-title">پروفایل مظنون</div>
+                <div id="suspectProfile" class="suspect-text">در حال بررسی...</div>
             </div>
             
-            <div class="stats-panel">
-                <div class="stat-item">
-                    <span>🕵️ حس کارآگاهی</span>
-                    <span id="detectiveScore">۰</span>
-                </div>
-                <div class="stat-item">
-                    <span>📎 مدارک</span>
-                    <span id="clueCount">۰</span>
-                </div>
-                <div class="stat-item">
-                    <span>🎯 دقت</span>
-                    <span id="accuracyPercent">۱۰۰%</span>
+            <div class="ad-container" id="adContainer">
+                <div class="ad-placeholder">
+                    <span class="ad-icon"></span>
+                    <span>فضای تبلیغاتی</span>
                 </div>
             </div>
             
-            <button id="sixthSenseBtn" class="sixth-sense-btn">🔮 حس ششم (کمک)</button>
-            
-            <div class="music-control">
-                <span>🎵 موسیقی</span>
-                <button id="musicToggleBtn" class="music-toggle">🔇 قطع</button>
-            </div>
+            <button id="sixthSenseBtn" class="sense-btn">حس ششم</button>
         </aside>
 
         <div class="container">
             <header>
-                <div class="game-title">
-                    <h1>رَدِّ آخَر</h1>
-                    <div class="subtitle">شهر زوال · پروندهٔ بسته</div>
+                <div class="title-section">
+                    <h1>رد آخر</h1>
+                    <div class="subtitle">شهر زوال - پرونده باز</div>
                 </div>
-                <div class="stage-indicator">
-                    <span>پرونده</span>
-                    <span id="stageNumber">۱</span>
+                <div class="stage-badge">
+                    <span>مرحله</span>
+                    <span id="stageNumber">1</span>
                     <span>از</span>
-                    <span id="totalStages">۵</span>
+                    <span id="totalStages">5</span>
                 </div>
             </header>
 
             <main>
-                <div class="crime-location" id="crimeLocation">
+                <div class="location-bar">
                     <span id="locationIcon">📍</span>
                     <span id="locationName">کافه آخرین پناه</span>
-                    <span id="timeTag">۰۳:۴۲ بامداد</span>
+                    <span id="timeTag">03:42</span>
                 </div>
 
-                <div class="story-panel" id="storyPanel">
-                    <div class="blood-stain"></div>
-                    <div class="narrative-text" id="narrativeText"></div>
-                    <div class="clue-hint" id="clueHint"></div>
+                <div class="story-card">
+                    <div class="story-text" id="narrativeText"></div>
+                    <div class="clue-line" id="clueHint"></div>
                 </div>
 
-                <div class="mystery-box">
+                <div class="puzzle-card">
                     <div class="puzzle-header">
-                        <div class="puzzle-title" id="puzzleTitle">بازجویی</div>
-                        <div class="difficulty-tag" id="difficultyTag">سخت</div>
+                        <span class="puzzle-label">بازجویی</span>
+                        <span class="difficulty" id="difficultyTag">سخت</span>
                     </div>
                     <div class="puzzle-question" id="puzzleQuestion"></div>
-                    <div class="options-container" id="optionsContainer"></div>
+                    <div class="options-grid" id="optionsContainer"></div>
                 </div>
 
-                <div class="feedback-area" id="feedbackArea"></div>
+                <div class="message-area" id="messageArea"></div>
 
-                <div class="action-buttons">
-                    <button id="resetGameBtn" class="reset-btn">🔄 بستن پرونده و شروع مجدد</button>
-                    <button id="continueBtn" class="continue-btn" disabled>➡ صحنه بعدی</button>
+                <div class="action-row">
+                    <button id="resetBtn" class="btn-secondary">پرونده جدید</button>
+                    <button id="continueBtn" class="btn-primary" disabled>ادامه</button>
                 </div>
             </main>
 
             <footer>
-                <div class="clues-collected">
-                    <span>📋 گزارش سرنخ‌ها:</span>
-                    <div id="cluesList" class="clues-list-scroll"></div>
+                <div class="clues-footer">
+                    <span>آخرین سرنخ ثبت شده:</span>
+                    <span id="lastClue" class="last-clue-text">هیچ</span>
                 </div>
             </footer>
         </div>
     </div>
 
-    <div class="save-toast" id="saveToast">💾 پیشرفت ذخیره شد</div>
+    <div class="toast-message" id="toastMsg">ذخیره شد</div>
 
     <script src="script.js"></script>
 </body>

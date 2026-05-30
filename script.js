@@ -176,7 +176,7 @@ function renderLevelMap() {
         node.textContent = stage.id;
         if (idx < currentStage) node.classList.add('completed');
         else if (idx === currentStage) node.classList.add('current');
-        else if (idx > currentStage) node.classList.add('locked');
+        else node.classList.add('locked');
         levelMap.appendChild(node);
     });
 }

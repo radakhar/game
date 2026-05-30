@@ -66,12 +66,6 @@ body {
     border-bottom: 2px solid #6a3a2a;
 }
 
-.case-title {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-}
-
 .case-title h3 {
     font-size: 0.9rem;
     font-weight: 700;
@@ -105,6 +99,7 @@ body {
     gap: 8px;
     max-height: 200px;
     overflow-y: auto;
+    padding: 4px;
 }
 
 .level-node {
@@ -127,15 +122,11 @@ body {
     color: #4a3a2a;
 }
 
-.level-node.unlocked {
-    border-color: #8a5a3a;
-    color: #c48a6a;
-}
-
 .level-node.current {
     border-color: #dcae8a;
     background: #2a1a10;
     box-shadow: 0 0 8px rgba(200,120,70,0.4);
+    color: #dcae8a;
 }
 
 .level-node.completed {

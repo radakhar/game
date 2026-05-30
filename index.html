@@ -3,123 +3,225 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <title>رد آخر | پرونده زوال - ۳۰ مرحله معمایی</title>
-    <link rel="stylesheet" href="style.css">
+    <title>رد آخر | شهر زوال - بازی معمایی کارآگاهی</title>
+    <meta name="description" content="بازی معمایی رد آخر - در شهر رازآلود زوال، به عنوان کارآگاه پرونده‌های جنایی را حل کن. ۳۰ مرحله چالش‌برانگیز با داستان‌های تاریک و معمایی">
+    <meta name="keywords" content="بازی معمایی, بازی کارآگاهی, رازآلود, نوآر, رد آخر, شهر زوال, معمای جنایی">
+    <meta name="author" content="Rad Akhar">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="رد آخر - بازی معمایی شهر زوال">
+    <meta property="og:description" content="در تاریکی شب، حقیقت را پیدا کن. یک بازی معمایی نوآر با ۳۰ مرحله جذاب">
+    <meta property="og:type" content="website">
+    <meta name="theme-color" content="#0a0806">
+    <link rel="icon" type="image/png" href="https://uploadkon.ir/uploads/5b1130_262332a6a4-b82b-4f17-be0e-bed0bb91db40.png" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 100 100\'%3E%3Ccircle cx=\'50\' cy=\'50\' r=\'45\' fill=\'%233a2a20\'/%3E%3Ctext x=\'50\' y=\'65\' text-anchor=\'middle\' fill=\'%23c48a6a\' font-size=\'40\'%3E🕵️%3C/text%3E%3C/svg%3E'">
     <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Vazirmatn', sans-serif;
+            background: #050302;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* لودینگ */
+        .loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #0b0907;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            transition: opacity 0.5s ease;
+        }
+
+        .loading-content {
+            text-align: center;
+        }
+
+        .loading-logo {
+            font-size: 3rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, #e0c8a8, #c48a6a);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            letter-spacing: 5px;
+            margin-bottom: 20px;
+        }
+
+        .loading-spinner {
+            width: 50px;
+            height: 50px;
+            border: 3px solid #3a2a20;
+            border-top-color: #c48a6a;
+            border-radius: 50%;
+            margin: 0 auto 15px;
+            animation: spin 0.8s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .loading-text {
+            color: #8a7a6a;
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+        }
+
+        /* صفحه خوش‌آمدگویی */
+        .welcome-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #0b0907;
+            z-index: 999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.5s ease, visibility 0.5s;
+        }
+
+        .welcome-screen.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .welcome-card {
+            max-width: 550px;
+            background: #0f0d0b;
+            border: 1px solid #3a2a20;
+            border-radius: 28px;
+            padding: 40px 35px;
+            margin: 20px;
+            text-align: center;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+        }
+
+        .welcome-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 20px;
+            background: #1a120c;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            border: 1px solid #8a5a3a;
+        }
+
+        .welcome-title {
+            font-size: 1.8rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #e0c8a8, #c48a6a);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 10px;
+        }
+
+        .welcome-sub {
+            font-size: 0.7rem;
+            color: #8a6a4a;
+            margin-bottom: 25px;
+            letter-spacing: 2px;
+        }
+
+        .welcome-text {
+            font-size: 0.9rem;
+            line-height: 1.9;
+            color: #cec2b4;
+            text-align: justify;
+            margin-bottom: 30px;
+        }
+
+        .start-btn {
+            background: linear-gradient(95deg, #7a3a2a, #5a2a18);
+            border: none;
+            color: #f0e0d0;
+            padding: 14px 35px;
+            border-radius: 50px;
+            font-family: inherit;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: 0.2s;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        }
+
+        .start-btn:hover {
+            background: linear-gradient(95deg, #9a4a30, #7a3a20);
+            transform: translateY(-2px);
+        }
+
+        .vignette-welcome {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(ellipse at center, transparent 50%, rgba(0,0,0,0.7) 100%);
+            pointer-events: none;
+            z-index: 998;
+        }
+    </style>
 </head>
 <body>
-    <div class="noise"></div>
-    <div class="vignette"></div>
-
-    <div class="game-container">
-        <aside class="case-panel">
-            <div class="case-header">
-                <div class="case-title">
-                    <span class="case-icon"></span>
-                    <h3>پرونده زوال</h3>
-                </div>
-                <div class="case-status">فعال</div>
-            </div>
-
-            <div class="level-progress">
-                <div class="level-title">مراحل بازجویی</div>
-                <div class="level-map" id="levelMap"></div>
-            </div>
-
-            <div class="stats-panel">
-                <div class="stat-row">
-                    <span class="stat-label">اعتبار کارآگاهی</span>
-                    <span class="stat-value" id="detectiveCredit">۰</span>
-                </div>
-                <div class="stat-row">
-                    <span class="stat-label">تمرکز ذهنی</span>
-                    <span class="stat-value" id="mentalFocus">۱۰۰</span>
-                </div>
-                <div class="focus-bar-container">
-                    <div class="focus-bar" id="focusBar" style="width:100%"></div>
-                </div>
-                <div class="stat-row">
-                    <span class="stat-label">مدارک یافت شده</span>
-                    <span class="stat-value" id="evidenceCount">۰</span>
-                </div>
-            </div>
-
-            <div class="evidence-box">
-                <div class="box-title">مدارک و سرنخ‌ها</div>
-                <div class="evidence-list" id="evidenceList">
-                    <div class="empty-text">هیچ مدرکی ثبت نشده</div>
-                </div>
-            </div>
-
-            <div class="suspect-box">
-                <div class="box-title">پروفایل مظنون</div>
-                <div class="suspect-text" id="suspectText">در حال بررسی...</div>
-            </div>
-
-            <div class="ad-space" id="adSpace">
-                <div class="ad-placeholder">
-                    <span class="ad-icon">[ تبلیغات ]</span>
-                </div>
-            </div>
-
-            <div class="sense-info">
-                <span class="info-icon">i</span>
-                <span class="info-text">اگر در پاسخ مانده‌ای، از حس ششم کمک بگیر</span>
-            </div>
-
-            <button class="sense-btn" id="senseBtn">حس ششم</button>
-        </aside>
-
-        <main class="game-main">
-            <header class="game-header">
-                <div class="title-area">
-                    <h1>رَدِّ آخَر</h1>
-                    <div class="sub">شهر زوال · حقیقت گمشده</div>
-                </div>
-                <div class="stage-counter">
-                    <span>مرحله</span>
-                    <span id="currentStageNum">۱</span>
-                    <span>از</span>
-                    <span id="totalStages">۳۰</span>
-                </div>
-            </header>
-
-            <div class="location-info">
-                <span id="locationIcon">📍</span>
-                <span id="locationName">کافه آخرین پناه</span>
-                <span id="timeTag">۰۳:۴۲</span>
-            </div>
-
-            <div class="story-area">
-                <div class="story-text" id="storyText"></div>
-                <div class="clue-line" id="clueLine"></div>
-            </div>
-
-            <div class="puzzle-area">
-                <div class="puzzle-header">
-                    <span class="puzzle-badge">بازجویی</span>
-                    <span class="difficulty-badge" id="difficultyBadge">سخت</span>
-                </div>
-                <div class="puzzle-question" id="puzzleQuestion"></div>
-                <div class="options-area" id="optionsArea"></div>
-            </div>
-
-            <div class="message-area" id="messageArea"></div>
-
-            <div class="action-area">
-                <button class="btn-outline" id="resetBtn">پرونده جدید</button>
-                <button class="btn-primary" id="continueBtn" disabled>ادامه بازجویی</button>
-            </div>
-
-            <footer class="game-footer">
-                <span class="footer-label">آخرین سرنخ:</span>
-                <span class="footer-clue" id="lastClue">هیچ</span>
-            </footer>
-        </main>
+    <div class="loading-screen" id="loadingScreen">
+        <div class="loading-content">
+            <div class="loading-logo">رد آخر</div>
+            <div class="loading-spinner"></div>
+            <div class="loading-text">بارگذاری پرونده‌ها...</div>
+        </div>
     </div>
 
-    <div class="toast" id="toast">ذخیره شد</div>
+    <div class="vignette-welcome"></div>
+    <div class="welcome-screen" id="welcomeScreen">
+        <div class="welcome-card">
+            <div class="welcome-icon">🕵️</div>
+            <div class="welcome-title">شهر زوال</div>
+            <div class="welcome-sub">به تاریکی خوش آمدید</div>
+            <div class="welcome-text">
+                به شهر رازآلود زَوال خوش آمدید! جایی که تاریکی شب، رازهای پنهان را در خود جای داده و سایه‌ها، قصه‌های ناگفته‌ای را زمزمه می‌کنند. در بازی "رد آخر"، شما در نقش یک کارآگاه جوان و باهوش، مأموریت دارید تا در دل خیابان‌های پر پیچ و خم پایتخت، پرونده‌های جنایی پیچیده را حل کنید و پرده از راز جنایتکاران مرموز بردارید.
+                <br><br>
+                هر پرونده، شما را به لایه‌های عمیق‌تری از داستان می‌برد؛ از کوچه‌های قدیمی شمیران تا برج‌های مدرن امروزی. با دقت به سرنخ‌ها گوش دهید، مظنونین را موشکافانه بازجویی کنید، معماهای دشوار را حل کنید و با انتخاب‌های درست، حقیقت را آشکار سازید. هر تصمیم شما، مسیر داستان را تغییر می‌دهد و شما را به حقیقت نزدیک‌تر یا دورتر می‌کند.
+            </div>
+            <button class="start-btn" id="startGameBtn">سفر به قلب زوال</button>
+        </div>
+    </div>
 
-    <script src="script.js"></script>
+    <script>
+        window.addEventListener('DOMContentLoaded', () => {
+            const loadingScreen = document.getElementById('loadingScreen');
+            const welcomeScreen = document.getElementById('welcomeScreen');
+            const startBtn = document.getElementById('startGameBtn');
+
+            setTimeout(() => {
+                loadingScreen.style.opacity = '0';
+                setTimeout(() => {
+                    loadingScreen.style.display = 'none';
+                    welcomeScreen.classList.add('show');
+                }, 500);
+            }, 3000);
+
+            startBtn.addEventListener('click', () => {
+                window.location.href = 'game.html';
+            });
+        });
+    </script>
 </body>
 </html>

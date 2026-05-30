@@ -3,112 +3,122 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <title>رد آخر - بازی کارآگاهی جنایی</title>
+    <title>رد آخر | پرونده زوال - ۳۰ مرحله معمایی</title>
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="scene-overlay"></div>
+    <div class="noise"></div>
     <div class="vignette"></div>
 
-    <div class="game-wrapper">
+    <div class="game-container">
         <aside class="case-panel">
             <div class="case-header">
-                <h3>پرونده: زوال</h3>
-                <div class="case-badge">محرمانه</div>
+                <div class="case-title">
+                    <span class="case-icon"></span>
+                    <h3>پرونده زوال</h3>
+                </div>
+                <div class="case-status">فعال</div>
             </div>
-            
-            <div class="case-stats">
-                <div class="stat-card">
+
+            <div class="level-progress">
+                <div class="level-title">مراحل بازجویی</div>
+                <div class="level-map" id="levelMap"></div>
+            </div>
+
+            <div class="stats-panel">
+                <div class="stat-row">
                     <span class="stat-label">اعتبار کارآگاهی</span>
-                    <span class="stat-value" id="detectiveCredit">0</span>
+                    <span class="stat-value" id="detectiveCredit">۰</span>
                 </div>
-                <div class="stat-card">
+                <div class="stat-row">
                     <span class="stat-label">تمرکز ذهنی</span>
-                    <span class="stat-value" id="mentalFocus">100</span>
-                    <div class="focus-bar"><div class="focus-fill" id="focusFill" style="width:100%"></div></div>
+                    <span class="stat-value" id="mentalFocus">۱۰۰</span>
                 </div>
-                <div class="stat-card">
+                <div class="focus-bar-container">
+                    <div class="focus-bar" id="focusBar" style="width:100%"></div>
+                </div>
+                <div class="stat-row">
                     <span class="stat-label">مدارک یافت شده</span>
-                    <span class="stat-value" id="evidenceCount">0</span>
+                    <span class="stat-value" id="evidenceCount">۰</span>
                 </div>
             </div>
-            
-            <div class="evidence-section">
-                <div class="section-title">مدارک و سرنخ‌ها</div>
-                <div id="evidenceList" class="evidence-list">
-                    <div class="empty-hint">هنوز مدرکی ثبت نشده</div>
+
+            <div class="evidence-box">
+                <div class="box-title">مدارک و سرنخ‌ها</div>
+                <div class="evidence-list" id="evidenceList">
+                    <div class="empty-text">هیچ مدرکی ثبت نشده</div>
                 </div>
             </div>
-            
-            <div class="suspect-section">
-                <div class="section-title">پروفایل مظنون</div>
-                <div id="suspectProfile" class="suspect-text">در حال بررسی...</div>
+
+            <div class="suspect-box">
+                <div class="box-title">پروفایل مظنون</div>
+                <div class="suspect-text" id="suspectText">در حال بررسی...</div>
             </div>
-            
-            <div class="ad-container" id="adContainer">
+
+            <div class="ad-space" id="adSpace">
                 <div class="ad-placeholder">
-                    <span class="ad-icon"></span>
-                    <span>فضای تبلیغاتی</span>
+                    <span class="ad-icon">[ تبلیغات ]</span>
                 </div>
             </div>
-            
-            <button id="sixthSenseBtn" class="sense-btn">حس ششم</button>
+
+            <div class="sense-info">
+                <span class="info-icon">i</span>
+                <span class="info-text">اگر در پاسخ مانده‌ای، از حس ششم کمک بگیر</span>
+            </div>
+
+            <button class="sense-btn" id="senseBtn">حس ششم</button>
         </aside>
 
-        <div class="container">
-            <header>
-                <div class="title-section">
-                    <h1>رد آخر</h1>
-                    <div class="subtitle">شهر زوال - پرونده باز</div>
+        <main class="game-main">
+            <header class="game-header">
+                <div class="title-area">
+                    <h1>رَدِّ آخَر</h1>
+                    <div class="sub">شهر زوال · حقیقت گمشده</div>
                 </div>
-                <div class="stage-badge">
+                <div class="stage-counter">
                     <span>مرحله</span>
-                    <span id="stageNumber">1</span>
+                    <span id="currentStageNum">۱</span>
                     <span>از</span>
-                    <span id="totalStages">5</span>
+                    <span id="totalStages">۳۰</span>
                 </div>
             </header>
 
-            <main>
-                <div class="location-bar">
-                    <span id="locationIcon">📍</span>
-                    <span id="locationName">کافه آخرین پناه</span>
-                    <span id="timeTag">03:42</span>
-                </div>
+            <div class="location-info">
+                <span id="locationIcon">📍</span>
+                <span id="locationName">کافه آخرین پناه</span>
+                <span id="timeTag">۰۳:۴۲</span>
+            </div>
 
-                <div class="story-card">
-                    <div class="story-text" id="narrativeText"></div>
-                    <div class="clue-line" id="clueHint"></div>
-                </div>
+            <div class="story-area">
+                <div class="story-text" id="storyText"></div>
+                <div class="clue-line" id="clueLine"></div>
+            </div>
 
-                <div class="puzzle-card">
-                    <div class="puzzle-header">
-                        <span class="puzzle-label">بازجویی</span>
-                        <span class="difficulty" id="difficultyTag">سخت</span>
-                    </div>
-                    <div class="puzzle-question" id="puzzleQuestion"></div>
-                    <div class="options-grid" id="optionsContainer"></div>
+            <div class="puzzle-area">
+                <div class="puzzle-header">
+                    <span class="puzzle-badge">بازجویی</span>
+                    <span class="difficulty-badge" id="difficultyBadge">سخت</span>
                 </div>
+                <div class="puzzle-question" id="puzzleQuestion"></div>
+                <div class="options-area" id="optionsArea"></div>
+            </div>
 
-                <div class="message-area" id="messageArea"></div>
+            <div class="message-area" id="messageArea"></div>
 
-                <div class="action-row">
-                    <button id="resetBtn" class="btn-secondary">پرونده جدید</button>
-                    <button id="continueBtn" class="btn-primary" disabled>ادامه</button>
-                </div>
-            </main>
+            <div class="action-area">
+                <button class="btn-outline" id="resetBtn">پرونده جدید</button>
+                <button class="btn-primary" id="continueBtn" disabled>ادامه بازجویی</button>
+            </div>
 
-            <footer>
-                <div class="clues-footer">
-                    <span>آخرین سرنخ ثبت شده:</span>
-                    <span id="lastClue" class="last-clue-text">هیچ</span>
-                </div>
+            <footer class="game-footer">
+                <span class="footer-label">آخرین سرنخ:</span>
+                <span class="footer-clue" id="lastClue">هیچ</span>
             </footer>
-        </div>
+        </main>
     </div>
 
-    <div class="toast-message" id="toastMsg">ذخیره شد</div>
+    <div class="toast" id="toast">ذخیره شد</div>
 
     <script src="script.js"></script>
 </body>

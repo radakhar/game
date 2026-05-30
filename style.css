@@ -6,27 +6,20 @@
 
 body {
     font-family: 'Vazirmatn', sans-serif;
-    background: #0a0806;
-    color: #dad2c4;
+    background: #050302;
+    color: #d4cdc4;
     min-height: 100vh;
-    overflow-x: hidden;
 }
 
-.scene-overlay {
+.noise {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: repeating-linear-gradient(
-        45deg,
-        rgba(80, 30, 20, 0.03) 0px,
-        rgba(80, 30, 20, 0.03) 1px,
-        transparent 1px,
-        transparent 6px
-    );
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" opacity="0.04"><filter id="n"><feTurbulence type="fractalNoise" baseFrequency="0.7" numOctaves="3"/></filter><rect width="100%" height="100%" filter="url(%23n)"/></svg>');
     pointer-events: none;
-    z-index: 1;
+    z-index: 0;
 }
 
 .vignette {
@@ -35,34 +28,33 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background: radial-gradient(ellipse at center, transparent 55%, rgba(0,0,0,0.6) 100%);
+    background: radial-gradient(ellipse at center, transparent 50%, rgba(0,0,0,0.7) 100%);
     pointer-events: none;
-    z-index: 1;
+    z-index: 0;
 }
 
-.game-wrapper {
+.game-container {
     display: flex;
-    max-width: 1300px;
-    margin: 20px auto;
+    max-width: 1400px;
+    margin: 15px auto;
     gap: 20px;
     padding: 0 20px;
     position: relative;
-    z-index: 10;
+    z-index: 2;
 }
 
-/* پنل سمت راست */
 .case-panel {
-    width: 280px;
-    background: #0d0b09;
-    border-radius: 16px;
+    width: 290px;
+    background: #0b0907;
+    border-radius: 20px;
     border: 1px solid #3a2a20;
     padding: 18px 14px;
-    height: calc(100vh - 40px);
+    height: calc(100vh - 30px);
     position: sticky;
-    top: 20px;
+    top: 15px;
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 18px;
     overflow-y: auto;
 }
 
@@ -74,13 +66,20 @@ body {
     border-bottom: 2px solid #6a3a2a;
 }
 
-.case-header h3 {
-    font-size: 0.9rem;
-    font-weight: 600;
-    color: #c48a6a;
+.case-title {
+    display: flex;
+    align-items: center;
+    gap: 8px;
 }
 
-.case-badge {
+.case-title h3 {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: #c48a6a;
+    letter-spacing: 1px;
+}
+
+.case-status {
     font-size: 0.6rem;
     background: #2a1a10;
     padding: 3px 10px;
@@ -88,52 +87,114 @@ body {
     color: #b87a5a;
 }
 
-.case-stats {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
+.level-progress {
     background: #060504;
+    border-radius: 14px;
     padding: 12px;
-    border-radius: 12px;
 }
 
-.stat-card {
+.level-title {
+    font-size: 0.7rem;
+    color: #8a6a4a;
+    margin-bottom: 12px;
+}
+
+.level-map {
     display: flex;
-    flex-direction: column;
-    gap: 4px;
+    flex-wrap: wrap;
+    gap: 8px;
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+.level-node {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.7rem;
+    font-weight: 600;
+    background: #1a1410;
+    border: 1px solid #3a2a20;
+    color: #7a6a5a;
+}
+
+.level-node.locked {
+    background: #0a0806;
+    border-color: #2a1a10;
+    color: #4a3a2a;
+}
+
+.level-node.unlocked {
+    border-color: #8a5a3a;
+    color: #c48a6a;
+}
+
+.level-node.current {
+    border-color: #dcae8a;
+    background: #2a1a10;
+    box-shadow: 0 0 8px rgba(200,120,70,0.4);
+}
+
+.level-node.completed {
+    border-color: #6a9a4a;
+    color: #8aba6a;
+}
+
+.stats-panel {
+    background: #060504;
+    border-radius: 14px;
+    padding: 12px;
+}
+
+.stat-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 0;
+    font-size: 0.75rem;
+    border-bottom: 1px dashed #2a2018;
+}
+
+.stat-row:last-child {
+    border-bottom: none;
 }
 
 .stat-label {
-    font-size: 0.65rem;
     color: #8a7a6a;
-    letter-spacing: 0.5px;
 }
 
 .stat-value {
-    font-size: 1.2rem;
     font-weight: 700;
     color: #e0b88a;
 }
 
-.focus-bar {
+.focus-bar-container {
     width: 100%;
     height: 4px;
     background: #2a1a10;
     border-radius: 4px;
-    margin-top: 4px;
+    margin: 8px 0;
     overflow: hidden;
 }
 
-.focus-fill {
+.focus-bar {
     height: 100%;
     background: #c48a6a;
     border-radius: 4px;
-    transition: width 0.3s ease;
+    transition: width 0.3s;
 }
 
-.section-title {
-    font-size: 0.7rem;
-    color: #b87a5a;
+.evidence-box, .suspect-box {
+    background: #060504;
+    border-radius: 14px;
+    padding: 12px;
+}
+
+.box-title {
+    font-size: 0.65rem;
+    color: #8a6a4a;
     margin-bottom: 8px;
     letter-spacing: 0.5px;
 }
@@ -141,9 +202,8 @@ body {
 .evidence-list {
     font-size: 0.7rem;
     color: #aa9a8a;
-    max-height: 120px;
+    max-height: 100px;
     overflow-y: auto;
-    padding-left: 5px;
 }
 
 .evidence-item {
@@ -156,23 +216,41 @@ body {
     font-size: 0.75rem;
     line-height: 1.5;
     color: #bcac9a;
-    background: #060504;
-    padding: 10px;
-    border-radius: 8px;
 }
 
-.ad-container {
+.ad-space {
     background: #060504;
     border: 1px dashed #5a3a2a;
     border-radius: 12px;
-    padding: 12px;
+    padding: 10px;
     text-align: center;
-    margin: 5px 0;
 }
 
 .ad-placeholder {
     font-size: 0.65rem;
     color: #6a5a4a;
+}
+
+.sense-info {
+    background: #1a1008;
+    border-radius: 10px;
+    padding: 8px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.65rem;
+    color: #b88a6a;
+}
+
+.info-icon {
+    width: 18px;
+    height: 18px;
+    background: #3a2a20;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.55rem;
 }
 
 .sense-btn {
@@ -184,10 +262,9 @@ body {
     border-radius: 30px;
     font-family: inherit;
     font-size: 0.8rem;
-    font-weight: 500;
+    font-weight: 600;
     cursor: pointer;
-    transition: all 0.2s;
-    margin-top: 5px;
+    transition: 0.2s;
 }
 
 .sense-btn:hover {
@@ -195,16 +272,17 @@ body {
     border-color: #aa6a4a;
 }
 
-/* کانتینر اصلی */
-.container {
+.game-main {
     flex: 1;
     background: #0f0d0b;
     border-radius: 20px;
     border: 1px solid #3a2a20;
     overflow: hidden;
+    display: flex;
+    flex-direction: column;
 }
 
-header {
+.game-header {
     background: #0a0806;
     padding: 18px 24px;
     border-bottom: 1px solid #3a2a20;
@@ -213,54 +291,54 @@ header {
     align-items: center;
 }
 
-.title-section h1 {
-    font-size: 1.5rem;
-    font-weight: 700;
-    color: #e0b88a;
-    letter-spacing: 2px;
+.title-area h1 {
+    font-size: 1.6rem;
+    font-weight: 800;
+    background: linear-gradient(135deg, #e0c8a8, #c48a6a);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    letter-spacing: 3px;
 }
 
-.subtitle {
-    font-size: 0.65rem;
+.sub {
+    font-size: 0.6rem;
     color: #7a6a5a;
+    letter-spacing: 1px;
 }
 
-.stage-badge {
+.stage-counter {
     background: #1a120c;
-    padding: 6px 14px;
+    padding: 6px 16px;
     border-radius: 30px;
     font-size: 0.75rem;
     border: 1px solid #4a3a2a;
 }
 
-.location-bar {
+.location-info {
     background: #0a0806;
-    margin: 15px 20px 0 20px;
-    padding: 8px 16px;
+    margin: 15px 20px 0;
+    padding: 8px 18px;
     border-radius: 30px;
     display: flex;
-    gap: 12px;
+    gap: 15px;
     font-size: 0.75rem;
     color: #b88a6a;
     border: 1px solid #2a2018;
 }
 
-main {
-    padding: 20px;
-}
-
-.story-card {
+.story-area {
     background: #0a0806;
-    border-radius: 16px;
+    margin: 18px 20px;
     padding: 20px;
-    margin-bottom: 20px;
+    border-radius: 18px;
     border-right: 3px solid #8a4a2a;
 }
 
 .story-text {
     font-size: 0.95rem;
-    line-height: 1.75;
-    color: #cec2b4;
+    line-height: 1.8;
+    color: #d4cabc;
 }
 
 .clue-line {
@@ -271,11 +349,11 @@ main {
     color: #b88a6a;
 }
 
-.puzzle-card {
+.puzzle-area {
     background: #0a0806;
-    border-radius: 16px;
+    margin: 0 20px 20px;
     padding: 20px;
-    margin-bottom: 20px;
+    border-radius: 18px;
     border: 1px solid #2a2018;
 }
 
@@ -285,16 +363,16 @@ main {
     margin-bottom: 15px;
 }
 
-.puzzle-label {
+.puzzle-badge {
     font-size: 0.65rem;
     color: #8a6a4a;
     text-transform: uppercase;
 }
 
-.difficulty {
+.difficulty-badge {
     font-size: 0.6rem;
     background: #2a1a10;
-    padding: 2px 10px;
+    padding: 2px 12px;
     border-radius: 20px;
     color: #b87a5a;
 }
@@ -307,7 +385,7 @@ main {
     line-height: 1.6;
 }
 
-.options-grid {
+.options-area {
     display: flex;
     flex-direction: column;
     gap: 10px;
@@ -329,15 +407,15 @@ main {
 .option-btn:hover:not(:disabled) {
     background: #2a2018;
     border-color: #8a5a3a;
-    transform: translateX(-3px);
+    transform: translateX(-4px);
 }
 
-.option-btn.correct-highlight {
+.option-btn.correct {
     background: #1a3a1a;
     border-color: #6a9a4a;
 }
 
-.option-btn.wrong-highlight {
+.option-btn.wrong {
     background: #3a1a1a;
     border-color: #aa4a2a;
     text-decoration: line-through;
@@ -349,45 +427,59 @@ main {
 }
 
 .message-area {
-    background: #0a0806;
-    border-radius: 12px;
+    margin: 0 20px 15px;
     padding: 12px 18px;
-    margin: 15px 0;
+    border-radius: 12px;
     border-right: 3px solid #6a3a2a;
     min-height: 60px;
     font-size: 0.85rem;
+    background: #0a0806;
 }
 
 .message-success {
-    color: #8aba6a;
     border-right-color: #6a9a4a;
+    color: #aada8a;
 }
 
 .message-fail {
-    color: #da8a6a;
     border-right-color: #aa4a2a;
+    color: #da8a6a;
 }
 
-.action-row {
+.action-area {
     display: flex;
     gap: 12px;
-    margin-top: 10px;
+    margin: 5px 20px 20px;
 }
 
-.btn-primary, .btn-secondary {
-    padding: 12px 24px;
+.btn-outline {
+    background: #1a120c;
+    border: 1px solid #4a3a2a;
+    color: #b88a6a;
+    padding: 12px 22px;
+    border-radius: 40px;
     font-family: inherit;
     font-weight: 600;
-    border-radius: 40px;
     cursor: pointer;
-    border: none;
     transition: 0.2s;
+}
+
+.btn-outline:hover {
+    background: #2a1a10;
+    border-color: #8a5a3a;
 }
 
 .btn-primary {
     background: linear-gradient(95deg, #7a3a2a, #5a2a18);
+    border: none;
     color: #f0e0d0;
+    padding: 12px 24px;
+    border-radius: 40px;
+    font-family: inherit;
+    font-weight: 700;
+    cursor: pointer;
     flex: 1;
+    transition: 0.2s;
 }
 
 .btn-primary:not(:disabled):hover {
@@ -401,41 +493,27 @@ main {
     cursor: not-allowed;
 }
 
-.btn-secondary {
-    background: #1a120c;
-    color: #b88a6a;
-    border: 1px solid #4a3a2a;
-}
-
-.btn-secondary:hover {
-    background: #2a1a10;
-    border-color: #8a5a3a;
-}
-
-footer {
+.game-footer {
     background: #080604;
     padding: 12px 20px;
     border-top: 1px solid #2a2018;
-}
-
-.clues-footer {
     font-size: 0.7rem;
     color: #8a7a6a;
 }
 
-.last-clue-text {
+.footer-clue {
     color: #c48a6a;
     margin-right: 8px;
 }
 
-.toast-message {
+.toast {
     position: fixed;
     bottom: 30px;
     left: 50%;
     transform: translateX(-50%) translateY(80px);
     background: #1a120c;
     color: #dcae8a;
-    padding: 8px 20px;
+    padding: 8px 22px;
     border-radius: 30px;
     border: 1px solid #6a4a2a;
     font-size: 0.75rem;
@@ -444,23 +522,23 @@ footer {
     pointer-events: none;
 }
 
-.toast-message.show {
+.toast.show {
     transform: translateX(-50%) translateY(0);
 }
 
-.empty-hint {
+.empty-text {
     color: #5a4a3a;
     font-style: italic;
 }
 
 @media (max-width: 800px) {
-    .game-wrapper {
+    .game-container {
         flex-direction: column;
     }
     .case-panel {
         width: 100%;
         height: auto;
         position: static;
-        max-height: 400px;
+        max-height: 450px;
     }
 }

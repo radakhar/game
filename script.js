@@ -1,94 +1,76 @@
 // ======================
-// رد آخر - هسته بازی
+// رد آخر - نسخه نخبه با نقشه، امتیاز، تایمر
 // ======================
 
-// داده‌های مراحل (۵ مرحله کامل با داستان، سوال، گزینه‌ها، پاسخ صحیح و سرنخ)
 const stagesData = [
     {
         id: 1,
+        name: "پناه آخر",
         narrative: "باران سردی روی سنگفرش‌های خیس کوچه‌های زوال می‌بارید. نفس‌هایت در هوای نمناک به شکل ابرهای کوتاهی نمایان می‌شد. سال‌هاست دنبال حقیقت گمشده‌ای، و حالا سرنخی تو را به کافه‌ی «آخرین پناه» کشانده. پشت میز گوشه، مردی با کلاه کج نشسته و پاکتی کاهی را روی میز هل می‌دهد. نجوا می‌کند: «اگر می‌خواهی بدانی آن شب در اسکله چه گذشت، باید رمز قفسه امانات را پیدا کنی. حواست به جمجمه‌ی روی در باشد.»",
+        atmosphere: { scent: "بوی قهوه سوخته و تنباکو", sound: "صدای خش خش باران و زنگ در دوردست" },
         puzzleQuestion: "به درب قفسه امانات نزدیک می‌شوی. روی آن جمجمه‌ای حک شده با دو چشم خالی. زیر جمجمه نوشته: «آنچه که همیشه می‌بیند اما دیده نمی‌شود، کلید حقیقت است.» رمز عبور (یک کلمه) چیست؟",
-        options: [
-            "سایه",
-            "نگاه",
-            "باد",
-            "ماه",
-            "آینه"
-        ],
-        correctIndex: 1, // نگاه (چشم می‌بیند اما دیده نمی‌شود)
+        options: ["سایه", "نگاه", "باد", "ماه", "آینه"],
+        correctIndex: 1,
         clueReward: "🔑 سرنخ: «چشم‌هایی که در تاریکی می‌بینند» - نام شخص مرموز: سایه‌نورد",
-        nextStageUnlock: true
+        insightReward: 20
     },
     {
         id: 2,
+        name: "تئاتر سکوت",
         narrative: "قفسه باز می‌شود. داخل آن یک عکس سیاه‌وسفید، نیمه سوخته، و یک کلید آهنی زنگ‌زده قرار دارد. عکس زنی را نشان می‌دهد با چشمانی ترسیده، پشت او ساختمانی آشنا: تئاتر متروک زوال. به طرف تئاتر می‌روی. در ورودی با دو سنگ‌قبر نمادین روبرو می‌شوی. روی یکی «دروغ» و روی دیگری «سکوت» حک شده. صدایی از درون می‌گوید: «تنها یکی از اینها تو را عبور می‌دهد، آن که کلید حقیقت است.»",
+        atmosphere: { scent: "گرد و غبار کهنه و پارافین", sound: "سکوت سنگین، فقط ضربان قلبت" },
         puzzleQuestion: "برای وارد شدن به تئاتر، باید روی کدام سنگ قدم بگذاری؟ دروغ یا سکوت؟",
-        options: [
-            "قدم گذاشتن روی سنگ «دروغ»",
-            "قدم گذاشتن روی سنگ «سکوت»",
-            "دور زدن سنگ‌ها از کنار دیوار",
-            "گفتن یک کلمه رمز به در",
-            "نادیده گرفتن و زدن لگد به در"
-        ],
-        correctIndex: 1, // سکوت
+        options: ["قدم گذاشتن روی سنگ «دروغ»", "قدم گذاشتن روی سنگ «سکوت»", "دور زدن سنگ‌ها از کنار دیوار", "گفتن یک کلمه رمز به در", "نادیده گرفتن و زدن لگد به در"],
+        correctIndex: 1,
         clueReward: "🎭 سرنخ: «سکوت، حقیقت را فریاد می‌زند» - یادداشتی پیدا می‌کنی با آدرس: اسکله شرقی، انبار شماره ۷",
-        nextStageUnlock: true
+        insightReward: 25
     },
     {
         id: 3,
+        name: "نت‌های گمشده",
         narrative: "از در عبور می‌کنی. هوای تئاتر سرد و بوی کپک و شراب کهنه می‌دهد. روی سن، یک پیانوی قدیمی، و روی آن نت‌هایی با لکه‌های قرمز. نزدیک که می‌روی، یک برگه روی زمین: «هر کسی که به دنبال حقیقت است باید سه نت از قلب شب بنوازد: نت اول در جایی که نور نمی‌تابد، نت دوم در جایی که آب جاری نیست، نت سوم در جایی که سکوت فریاد می‌زند.» سه شیء روی صحنه است: شمع، کاسه خالی، آینه شکسته.",
+        atmosphere: { scent: "کپک، چوب نم زده و عطر گلهای خشک", sound: "وزش باد از شکاف در" },
         puzzleQuestion: "به ترتیب درست اشیاء را برای نواختن سه نت انتخاب کن:",
-        options: [
-            "شمع، آینه، کاسه خالی",
-            "آینه، کاسه خالی، شمع",
-            "کاسه خالی، شمع، آینه",
-            "شمع، کاسه خالی، آینه",
-            "آینه، شمع، کاسه خالی"
-        ],
-        correctIndex: 3, // شمع(نور ندارد؟ شمع خودش نور دارد. دقت: "جایی که نور نمی‌تابد" = سایه/آینه نیست. ولی منطق معمایی: شمع در تاریکی، کاسه خالی بدون آب، آینه شکسته سکوت. اما پاسخ استاندارد: شمع (نور نمی‌تابد یعنی خاموش) - کاسه خالی (آب جاری نیست) - آینه شکسته (سکوت فریاد می‌زند)
+        options: ["شمع، آینه، کاسه خالی", "آینه، کاسه خالی، شمع", "کاسه خالی، شمع، آینه", "شمع، کاسه خالی، آینه", "آینه، شمع، کاسه خالی"],
+        correctIndex: 3,
         clueReward: "🎹 سرنخ: نت‌ها کلید قفل جعبه را ساختند. درون جعبه: یک نوار صوتی با برچسب «حقیقت زوال»",
-        nextStageUnlock: true
+        insightReward: 30
     },
     {
         id: 4,
-        narrative: "نوار صوتی را در دستگاه قدیمی تئاتر می‌گذاری. صدای لرزانی می‌گوید: «شهردار زوال به همراه رئیس کلانتری، قتل‌‌گاه اسکله را پوشانده‌اند. مدارک در صندوق امانات بانک مرکزی، شماره ۱۳، رمز...» ناگهان صدا قطع می‌شود. باید خودت رمز را پیدا کنی. روی دیوار پشت دستگاه، چند خط نوشته شده: «اولین روز هفته در شهر آبی، ساعت ۲۳، پل دوم، پایین‌ترین عدد آسمان.»",
+        name: "صدای حقیقت",
+        narrative: "نوار صوتی را در دستگاه قدیمی تئاتر می‌گذاری. صدای لرزانی می‌گوید: «شهردار زوال به همراه رئیس کلانتری، قتل‌گاه اسکله را پوشانده‌اند. مدارک در صندوق امانات بانک مرکزی، شماره ۱۳، رمز...» ناگهان صدا قطع می‌شود. باید خودت رمز را پیدا کنی. روی دیوار پشت دستگاه، چند خط نوشته شده: «اولین روز هفته در شهر آبی، ساعت ۲۳، پل دوم، پایین‌ترین عدد آسمان.»",
+        atmosphere: { scent: "پلاستیک سوخته و فلز داغ", sound: "صدای خش خش نوار و وزوز برق" },
         puzzleQuestion: "رمز ۴ رقمی صندوق امانات چیست؟ (اعداد را پشت سر هم بنویس)",
-        options: [
-            "۰۱۱۲",
-            "۲۳۱۱",
-            "۱۲۳۰",
-            "۱۲۳۴",
-            "۴۲۱۳"
-        ],
-        correctIndex: 0, // 0112 : شنبه=1 ؟ اول هفته در ایران شنبه=1، ساعت 23=11 شب؟ ولی پایین‌ترین عدد آسمان؟ صفر؟ ترکیب: 0,1,1,2
+        options: ["۰۱۱۲", "۲۳۱۱", "۱۲۳۰", "۱۲۳۴", "۴۲۱۳"],
+        correctIndex: 0,
         clueReward: "📜 سرنخ: رمز درست بود. داخل صندوق پرونده‌ای با نام «پروژه زوال» و یک کلید مسی به شکل مارپیچ",
-        nextStageUnlock: true
+        insightReward: 35
     },
     {
         id: 5,
+        name: "رد آخر",
         narrative: "حالا به مرکز شهر زوال، برج ساعت قدیمی رسیده‌ای. می‌دانی حقیقت در زیرزمین برج پنهان شده. اما در ورودی یک صفحه کلید عددی نیاز به یک کلمه رمز دارد. بالای در حکاکی شده: «آغاز و پایان یک سفر؛ شهری که نامش را فراموش کرده‌ای، گمشده در میان کلمات». سرنخ‌های قبلی به اسم شهر اشاره داشتند: زوال. اما خود کلمه «زوال» یعنی پایان، افول.",
+        atmosphere: { scent: "بوی باران بر سنگ و فلز زنگ زده", sound: "صدای قدم‌های خودت در هالهای از پژواک" },
         puzzleQuestion: "کلمه رمز ورود به زیرزمین برج چیست؟ (به مفهوم و اسم شهر توجه کن)",
-        options: [
-            "طلوع",
-            "آغاز",
-            "انحلال",
-            "سقوط",
-            "رستاخیز"
-        ],
-        correctIndex: 0, // طلوع (تضاد با زوال، آغاز دوباره)
-        clueReward: "💎 حقیقت آشکار شد: تمامی قتل‌ها دستور مستقیم از دفتر فرمانداری بود. پرونده برای همیشه بسته نمی‌شود... تو راز را فاش کردی. بازی به پایان رسید.",
-        nextStageUnlock: false // پایان بازی
+        options: ["طلوع", "آغاز", "انحلال", "سقوط", "رستاخیز"],
+        correctIndex: 0,
+        clueReward: "💎 حقیقت آشکار شد: تمامی قتل‌ها دستور مستقیم از دفتر فرمانداری بود. پرونده برای همیشه بسته نمی‌شود... تو راز را فاش کردی.",
+        insightReward: 50
     }
 ];
 
-// وضعیت بازی
-let currentStage = 0;           // index مرحله فعلی (0-based)
+let currentStage = 0;
 let gameCompleted = false;
-let answerLocked = false;       // آیا در مرحله فعلی پاسخ داده شده؟
-let collectedClues = [];        // لیست سرنخ‌های به دست آمده
-let selectedOptionIndex = -1;
+let answerLocked = false;
+let collectedClues = [];
+let insightScore = 0;
+let timerActive = false;
+let timerInterval = null;
+let timeLeft = 45;
+let selectedAnswerThisStage = false;
 
-// عناصر DOM
+// عناصر
 const narrativeEl = document.getElementById('narrativeText');
 const puzzleQuestionEl = document.getElementById('puzzleQuestion');
 const optionsContainer = document.getElementById('optionsContainer');
@@ -98,36 +80,107 @@ const resetBtn = document.getElementById('resetGameBtn');
 const stageNumberEl = document.getElementById('stageNumber');
 const cluesListEl = document.getElementById('cluesList');
 const clueHintEl = document.getElementById('clueHint');
-const totalStagesSpan = document.getElementById('totalStages');
+const insightScoreEl = document.getElementById('insightScore');
+const clueCountEl = document.getElementById('clueCount');
+const timerDisplay = document.getElementById('timerDisplay');
+const toggleTimerBtn = document.getElementById('toggleTimerBtn');
+const atmosphereSensor = document.getElementById('atmosphereSensor');
+const scentText = document.getElementById('scentText');
+const soundText = document.getElementById('soundText');
+const mapStagesContainer = document.getElementById('mapStagesContainer');
 
-// مقداردهی اولیه
 function initGame() {
-    totalStagesSpan.textContent = stagesData.length;
+    document.getElementById('totalStages').textContent = stagesData.length;
+    insightScore = 0;
+    collectedClues = [];
+    updateStatsUI();
+    updateCluesDisplay();
     loadStage(0);
-    attachEventListeners();
+    renderStageMap();
+    attachEvents();
+    if (timerActive) stopTimer();
+    timerActive = false;
+    toggleTimerBtn.classList.remove('active');
+    timerDisplay.textContent = '--';
 }
 
-function attachEventListeners() {
+function attachEvents() {
     continueBtn.addEventListener('click', goToNextStage);
     resetBtn.addEventListener('click', resetGame);
+    toggleTimerBtn.addEventListener('click', toggleTimer);
 }
 
-function resetGame() {
-    currentStage = 0;
-    gameCompleted = false;
-    answerLocked = false;
-    collectedClues = [];
-    selectedOptionIndex = -1;
-    
-    // حذف کلاس‌های هایلایت از آپشن‌ها
-    const allOptBtns = document.querySelectorAll('.option-btn');
-    allOptBtns.forEach(btn => btn.remove());
-    
-    loadStage(0);
-    updateCluesDisplay();
-    feedbackArea.innerHTML = '🕯️ بازی از نو آغاز شد. در شهر زوال، هر قدم یک راز است.';
-    feedbackArea.className = 'feedback-area';
-    continueBtn.disabled = true;
+function toggleTimer() {
+    if (gameCompleted) return;
+    timerActive = !timerActive;
+    if (timerActive) {
+        toggleTimerBtn.classList.add('active');
+        startTimerForCurrentStage();
+    } else {
+        toggleTimerBtn.classList.remove('active');
+        stopTimer();
+        timerDisplay.textContent = '--';
+        feedbackArea.innerHTML += '<br>⏸️ تایمر غیرفعال شد.';
+    }
+}
+
+function startTimerForCurrentStage() {
+    if (timerInterval) clearInterval(timerInterval);
+    timeLeft = 45;
+    timerDisplay.textContent = timeLeft;
+    timerInterval = setInterval(() => {
+        if (!timerActive || answerLocked || gameCompleted) return;
+        if (timeLeft <= 1) {
+            // زمان تمام شد - جریمه و قفل موقت
+            clearInterval(timerInterval);
+            timerDisplay.textContent = '0';
+            if (!answerLocked && !gameCompleted) {
+                feedbackArea.innerHTML = '⏰ زمان به پایان رسید! تمرکزت رو از دست دادی... یک سرنخ از دست رفتی و ۵ امتیاز کم شد.';
+                insightScore = Math.max(0, insightScore - 5);
+                updateStatsUI();
+                answerLocked = true;
+                const allBtns = document.querySelectorAll('.option-btn');
+                allBtns.forEach(btn => btn.disabled = true);
+                setTimeout(() => {
+                    if (!gameCompleted && currentStage < stagesData.length) {
+                        answerLocked = false;
+                        allBtns.forEach(btn => btn.disabled = false);
+                        feedbackArea.innerHTML = '⏳ می‌توانی دوباره تلاش کنی. اما زمان دوباره شروع شد.';
+                        startTimerForCurrentStage();
+                    }
+                }, 3000);
+            }
+        } else {
+            timeLeft--;
+            timerDisplay.textContent = timeLeft;
+        }
+    }, 1000);
+}
+
+function stopTimer() {
+    if (timerInterval) {
+        clearInterval(timerInterval);
+        timerInterval = null;
+    }
+}
+
+function renderStageMap() {
+    mapStagesContainer.innerHTML = '';
+    stagesData.forEach((stage, idx) => {
+        let status = 'locked';
+        if (idx < currentStage) status = 'completed';
+        else if (idx === currentStage) status = 'current';
+        else if (idx === currentStage && !answerLocked) status = 'unlocked';
+        if (gameCompleted && idx === stagesData.length-1) status = 'completed';
+        
+        const node = document.createElement('div');
+        node.className = 'map-stage-node';
+        node.innerHTML = `
+            <div class="stage-circle ${status}">${stage.id}</div>
+            <div class="stage-name">${stage.name}</div>
+        `;
+        mapStagesContainer.appendChild(node);
+    });
 }
 
 function loadStage(stageIndex) {
@@ -135,38 +188,32 @@ function loadStage(stageIndex) {
         completeGame();
         return;
     }
-    
     const stage = stagesData[stageIndex];
     currentStage = stageIndex;
     stageNumberEl.textContent = stage.id;
-    
-    // نمایش داستان
     narrativeEl.textContent = stage.narrative;
     puzzleQuestionEl.textContent = stage.puzzleQuestion;
+    scentText.textContent = `👃 ${stage.atmosphere.scent}`;
+    soundText.textContent = `🔊 ${stage.atmosphere.sound}`;
     
-    // نمایش سرنخ قبلی اگر چیزی باشد
     if (collectedClues.length > 0) {
-        clueHintEl.innerHTML = `<span>📜 آخرین سرنخ:</span> ${collectedClues[collectedClues.length-1]}`;
+        clueHintEl.innerHTML = `📌 آخرین سرنخ: ${collectedClues[collectedClues.length-1]}`;
     } else {
-        clueHintEl.innerHTML = 'سرنخی هنوز کشف نشده... با دقت پاسخ بده.';
+        clueHintEl.innerHTML = 'هیچ سرنخی هنوز کشف نشده...';
     }
     
-    // ساخت دکمه‌های گزینه‌ها
     renderOptions(stage.options);
-    
-    // ریاستیتوس
     answerLocked = false;
-    selectedOptionIndex = -1;
+    selectedAnswerThisStage = false;
     continueBtn.disabled = true;
-    feedbackArea.innerHTML = '⚡ یکی از گزینه‌ها را انتخاب کن... هر اشتباه تو را از حقیقت دور می‌کند.';
+    feedbackArea.innerHTML = '⚡ یکی از گزینه‌ها را انتخاب کن... حواست به جزئیات باشد.';
     feedbackArea.className = 'feedback-area';
     
-    // پاک کردن کلاس‌های هایلایت قبلی
-    const btns = document.querySelectorAll('.option-btn');
-    btns.forEach(btn => {
-        btn.classList.remove('correct-highlight', 'wrong-highlight');
-        btn.disabled = false;
-    });
+    if (timerActive) {
+        stopTimer();
+        startTimerForCurrentStage();
+    }
+    renderStageMap();
 }
 
 function renderOptions(options) {
@@ -182,64 +229,58 @@ function renderOptions(options) {
 }
 
 function handleAnswer(selectedIdx, btnElement) {
-    if (answerLocked || gameCompleted) return;
-    
+    if (answerLocked || gameCompleted || selectedAnswerThisStage) return;
     const stage = stagesData[currentStage];
     const isCorrect = (selectedIdx === stage.correctIndex);
-    
-    // قفل کردن گزینه‌ها
+    selectedAnswerThisStage = true;
     answerLocked = true;
-    selectedOptionIndex = selectedIdx;
     
-    // غیرفعال کردن همه دکمه‌ها
     const allBtns = document.querySelectorAll('.option-btn');
-    allBtns.forEach(btn => {
-        btn.disabled = true;
-    });
+    allBtns.forEach(btn => btn.disabled = true);
     
-    // نمایش بازخورد و افکت
     if (isCorrect) {
-        // پاسخ درست
         btnElement.classList.add('correct-highlight');
-        const rewardClue = stage.clueReward;
-        if (rewardClue && !collectedClues.includes(rewardClue)) {
-            collectedClues.push(rewardClue);
+        insightScore += stage.insightReward;
+        if (!collectedClues.includes(stage.clueReward)) {
+            collectedClues.push(stage.clueReward);
         }
+        updateStatsUI();
         updateCluesDisplay();
-        
-        feedbackArea.innerHTML = `✅ پاسخ درست! «${stage.options[selectedIdx]}» کلید حقیقت بود. ${rewardClue.substring(0, 100)}`;
+        feedbackArea.innerHTML = `✅ درست! +${stage.insightReward} نفوذ ذهن. ${stage.clueReward.substring(0, 100)}`;
         feedbackArea.className = 'feedback-area feedback-success';
-        
-        // فعال کردن دکمه ادامه
         continueBtn.disabled = false;
-        
-        // ذخیره در localStorage برای ادامه بعدی (اختیاری)
+        if (timerActive) stopTimer();
         saveProgress();
     } else {
-        // پاسخ غلط
         btnElement.classList.add('wrong-highlight');
-        feedbackArea.innerHTML = `❌ اشتباه! گزینه «${stage.options[selectedIdx]}» در این مرحله راهی جز بن‌بست نیست. دوباره تلاش کن... (پاسخ صحیح را پیدا کن)`;
+        const penalty = 8;
+        insightScore = Math.max(0, insightScore - penalty);
+        updateStatsUI();
+        feedbackArea.innerHTML = `❌ اشتباه! -${penalty} نفوذ ذهن. «${stage.options[selectedIdx]}» راهی جز بن‌بست نیست. دوباره تلاش کن...`;
         feedbackArea.className = 'feedback-area feedback-fail';
         
-        // اجازه انتخاب دوباره پس از ۱ ثانیه (اما خیر - طبق طراحی بازی: باید دوباره تلاش کند بدون مسدودیت ابدی ولی با قفل موقت؟ بهتر است قفل یکبار برداشته شود اما با هشدار)
         setTimeout(() => {
             if (!gameCompleted && currentStage === stage.id-1 && !continueBtn.disabled === false) {
-                // فقط اگر همچنان در همان مرحله هستیم و پاسخ صحیح نداده
                 answerLocked = false;
+                selectedAnswerThisStage = false;
                 allBtns.forEach(btn => {
                     btn.disabled = false;
                     btn.classList.remove('wrong-highlight');
                 });
-                feedbackArea.innerHTML = '🕸️ دوباره تلاش کن... با دقت به سرنخ‌ها و فضا فکر کن.';
+                feedbackArea.innerHTML = '🕸️ دوباره تلاش کن... با دقت به سرنخ‌ها فکر کن.';
                 feedbackArea.className = 'feedback-area';
+                if (timerActive) {
+                    stopTimer();
+                    startTimerForCurrentStage();
+                }
             }
-        }, 1500);
+        }, 1600);
     }
+    renderStageMap();
 }
 
 function goToNextStage() {
     if (!continueBtn.disabled && !gameCompleted) {
-        // انتقال به مرحله بعد
         if (currentStage + 1 < stagesData.length) {
             loadStage(currentStage + 1);
         } else if (currentStage + 1 === stagesData.length) {
@@ -252,53 +293,53 @@ function goToNextStage() {
 
 function completeGame() {
     gameCompleted = true;
-    answerLocked = true;
     continueBtn.disabled = true;
-    
-    narrativeEl.innerHTML = "🌆 شب به پایان می‌رسد. حقیقت زوال را یافتی. پرونده‌ها به دست روزنامه‌نگار مستقل رسید. شهر نفس‌های آخرش را می‌کشد، اما تو حالا می‌دانی... رد آخر، آغاز یک بیداری است.<br><br>✨ بازی تمام شد. از تو برای کشف حقیقت سپاسگزاریم. ✨";
-    puzzleQuestionEl.textContent = "پایان ماجرا... یا شروعی دوباره؟";
-    optionsContainer.innerHTML = '<div style="text-align:center; padding:20px; color:#c9a87b;">رهگذر، حقیقت را با خودت ببر.</div>';
-    feedbackArea.innerHTML = '🏆 تو بر راز غلبه کردی. بازی «رد آخر» به پایان رسید. می‌توانی دوباره شروع کنی.';
-    feedbackArea.className = 'feedback-area feedback-success';
+    if (timerActive) stopTimer();
+    narrativeEl.innerHTML = "🌆 شب به پایان می‌رسد. حقیقت زوال را یافتی. پرونده‌ها به دست روزنامه‌نگار مستقل رسید. شهر نفس‌های آخرش را می‌کشد، اما تو حالا می‌دانی... رد آخر، آغاز یک بیداری است.<br><br>✨ بازی تمام شد. امتیاز نهایی: " + insightScore + " ✨";
+    puzzleQuestionEl.textContent = "پایان ماجرا";
+    optionsContainer.innerHTML = '<div style="text-align:center; padding:20px; color:#c9a87b;">حقیقت فاش شد. تو پیروز شدی.</div>';
+    feedbackArea.innerHTML = '🏆 تو بر راز غلبه کردی. می‌توانی دوباره شروع کنی.';
+    renderStageMap();
+}
+
+function updateStatsUI() {
+    insightScoreEl.textContent = insightScore;
+    clueCountEl.textContent = collectedClues.length;
 }
 
 function updateCluesDisplay() {
     if (collectedClues.length === 0) {
-        cluesListEl.textContent = 'هیچ';
+        cluesListEl.innerHTML = 'هیچ سرنخی...';
     } else {
-        cluesListEl.innerHTML = collectedClues.map(c => `🔸 ${c.substring(0, 60)}`).join('<br>');
+        cluesListEl.innerHTML = collectedClues.map(c => `🔸 ${c}`).join('<br>');
     }
 }
 
 function saveProgress() {
-    // ذخیره خودکار در localStorage (اختیاری)
-    const progress = {
-        stageIndex: currentStage,
-        clues: collectedClues,
-        completed: gameCompleted
-    };
-    localStorage.setItem('RadAkharProgress', JSON.stringify(progress));
+    const progress = { stageIndex: currentStage, clues: collectedClues, insightScore, completed: gameCompleted };
+    localStorage.setItem('RadAkharElite', JSON.stringify(progress));
 }
 
 function loadProgress() {
-    const saved = localStorage.getItem('RadAkharProgress');
+    const saved = localStorage.getItem('RadAkharElite');
     if (saved && !gameCompleted) {
         try {
             const data = JSON.parse(saved);
             if (!data.completed && data.stageIndex < stagesData.length) {
-                if (confirm('بازی ذخیره‌ای یافت شد. آیا از همان مرحله ادامه می‌دهی؟')) {
+                if (confirm('بازی ذخیره‌ای یافت شد. ادامه میدی؟')) {
                     currentStage = data.stageIndex;
                     collectedClues = data.clues || [];
-                    loadStage(currentStage);
+                    insightScore = data.insightScore || 0;
+                    updateStatsUI();
                     updateCluesDisplay();
-                    feedbackArea.innerHTML = '🔮 ادامه ماجرا از جایی که رها کرده بودی...';
+                    loadStage(currentStage);
+                    feedbackArea.innerHTML = '🔮 ادامه از همان نقطه تاریک...';
                 }
             }
         } catch(e) {}
     }
 }
 
-// اجرای اولیه با قابلیت لود پیشرفت
 window.addEventListener('DOMContentLoaded', () => {
     initGame();
     loadProgress();

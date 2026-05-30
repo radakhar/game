@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>رد آخر | بازجویی - مرحله ۱ از ۳۰</title>
+    <meta name="description" content="بازی معمایی رد آخر - حل پرونده‌های جنایی شهر زوال. ۳۰ مرحله چالش‌برانگیز">
+    <meta name="keywords" content="بازی معمایی, کارآگاهی, نوآر, رد آخر, زوال">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="رد آخر - بازجویی">
+    <meta property="og:description" content="حقیقت را در تاریکی پیدا کن">
+    <meta name="theme-color" content="#0a0806">
+    <link rel="icon" type="image/png" href="https://uploadkon.ir/uploads/5b1130_262332a6a4-b82b-4f17-be0e-bed0bb91db40.png" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 100 100\'%3E%3Ccircle cx=\'50\' cy=\'50\' r=\'45\' fill=\'%233a2a20\'/%3E%3Ctext x=\'50\' y=\'65\' text-anchor=\'middle\' fill=\'%23c48a6a\' font-size=\'40\'%3E🕵️%3C/text%3E%3C/svg%3E'">
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="noise"></div>
+    <div class="vignette"></div>
+
+    <div class="game-container">
+        <aside class="case-panel">
+            <div class="case-header">
+                <div class="case-title">
+                    <span class="case-icon"></span>
+                    <h3>پرونده زوال</h3>
+                </div>
+                <div class="case-status">فعال</div>
+            </div>
+
+            <div class="level-progress">
+                <div class="level-title">مراحل بازجویی</div>
+                <div class="level-map" id="levelMap"></div>
+            </div>
+
+            <div class="stats-panel">
+                <div class="stat-row">
+                    <span class="stat-label">اعتبار کارآگاهی</span>
+                    <span class="stat-value" id="detectiveCredit">۰</span>
+                </div>
+                <div class="stat-row">
+                    <span class="stat-label">تمرکز ذهنی</span>
+                    <span class="stat-value" id="mentalFocus">۱۰۰</span>
+                </div>
+                <div class="focus-bar-container">
+                    <div class="focus-bar" id="focusBar" style="width:100%"></div>
+                </div>
+                <div class="stat-row">
+                    <span class="stat-label">مدارک یافت شده</span>
+                    <span class="stat-value" id="evidenceCount">۰</span>
+                </div>
+            </div>
+
+            <div class="evidence-box">
+                <div class="box-title">مدارک و سرنخ‌ها</div>
+                <div class="evidence-list" id="evidenceList">
+                    <div class="empty-text">هیچ مدرکی ثبت نشده</div>
+                </div>
+            </div>
+
+            <div class="suspect-box">
+                <div class="box-title">پروفایل مظنون</div>
+                <div class="suspect-text" id="suspectText">در حال بررسی...</div>
+            </div>
+
+            <div class="ad-space" id="adSpace">
+                <div class="ad-placeholder">
+                    <span class="ad-icon">[ تبلیغات ]</span>
+                </div>
+            </div>
+
+            <div class="sense-info">
+                <span class="info-icon">i</span>
+                <span class="info-text">اگر در پاسخ مانده‌ای، از حس ششم کمک بگیر</span>
+            </div>
+
+            <button class="sense-btn" id="senseBtn">حس ششم</button>
+        </aside>
+
+        <main class="game-main">
+            <header class="game-header">
+                <div class="title-area">
+                    <h1>رَدِّ آخَر</h1>
+                    <div class="sub">شهر زوال · حقیقت گمشده</div>
+                </div>
+                <div class="stage-counter">
+                    <span>مرحله</span>
+                    <span id="currentStageNum">۱</span>
+                    <span>از</span>
+                    <span id="totalStages">۳۰</span>
+                </div>
+            </header>
+
+            <div class="location-info">
+                <span id="locationIcon">📍</span>
+                <span id="locationName">کافه آخرین پناه</span>
+                <span id="timeTag">۰۳:۴۲</span>
+            </div>
+
+            <div class="story-area">
+                <div class="story-text" id="storyText"></div>
+                <div class="clue-line" id="clueLine"></div>
+            </div>
+
+            <div class="puzzle-area">
+                <div class="puzzle-header">
+                    <span class="puzzle-badge">بازجویی</span>
+                    <span class="difficulty-badge" id="difficultyBadge">سخت</span>
+                </div>
+                <div class="puzzle-question" id="puzzleQuestion"></div>
+                <div class="options-area" id="optionsArea"></div>
+            </div>
+
+            <div class="message-area" id="messageArea"></div>
+
+            <div class="action-area">
+                <button class="btn-outline" id="resetBtn">پرونده جدید</button>
+                <button class="btn-primary" id="continueBtn" disabled>ادامه بازجویی</button>
+            </div>
+
+            <footer class="game-footer">
+                <span class="footer-label">آخرین سرنخ:</span>
+                <span class="footer-clue" id="lastClue">هیچ</span>
+            </footer>
+        </main>
+    </div>
+
+    <div class="toast" id="toast">ذخیره شد</div>
+
+    <script src="script.js"></script>
+</body>
+</html>

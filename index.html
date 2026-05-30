@@ -3,63 +3,90 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <title>رد آخر - بازی معمایی نوآر</title>
+    <title>رد آخر - بازی معمایی نوآر | نسخه نخبه</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;600;700;900&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="overlay"></div>
-    <div class="container">
-        <header>
-            <div class="game-title">
-                <h1>رَدِّ آخَر</h1>
-                <div class="subtitle">شهر زوال · حقیقت گمشده</div>
+    <div class="fog-overlay"></div>
+    <div class="noise-overlay"></div>
+    
+    <div class="game-wrapper">
+        <aside class="stage-map-panel" id="stageMapPanel">
+            <div class="map-header">
+                <h3>🗺️ نقشهٔ زوال</h3>
+                <button id="toggleMapBtn" class="toggle-map">◀</button>
             </div>
-            <div class="stage-indicator">
-                <span id="stageLabel">مرحله</span>
-                <span id="stageNumber">۱</span>
-                <span>از</span>
-                <span id="totalStages">۵</span>
+            <div class="map-stages" id="mapStagesContainer">
+                <!-- مراحل به صورت دایره و خط وصل -->
             </div>
-        </header>
-
-        <main>
-            <div class="story-panel" id="storyPanel">
-                <div class="atmosphere-line"></div>
-                <div class="narrative-text" id="narrativeText">
-                    <!-- داستان مرحله اینجا نمایش داده می‌شود -->
+            <div class="stats-panel">
+                <div class="stat-item">
+                    <span>🧠 نفوذ ذهن</span>
+                    <span id="insightScore">0</span>
                 </div>
-                <div class="clue-hint" id="clueHint">
-                    <!-- سرنخ‌های به دست آمده -->
+                <div class="stat-item">
+                    <span>🔍 سرنخ‌ها</span>
+                    <span id="clueCount">0</span>
                 </div>
-            </div>
-
-            <div class="mystery-box">
-                <div class="puzzle-title" id="puzzleTitle">معمای مرحله</div>
-                <div class="puzzle-question" id="puzzleQuestion">
-                    سوال اصلی اینجا ظاهر می‌شود...
-                </div>
-                <div class="options-container" id="optionsContainer">
-                    <!-- گزینه‌ها با دکمه -->
+                <div class="stat-item">
+                    <span>⏱️ زمان فکری</span>
+                    <span id="timerDisplay">--</span>
                 </div>
             </div>
+        </aside>
 
-            <div class="feedback-area" id="feedbackArea">
-                <!-- پیام بازخورد -->
-            </div>
+        <div class="container">
+            <header>
+                <div class="game-title">
+                    <h1>رَدِّ آخَر</h1>
+                    <div class="subtitle">شهر زوال · حقیقت گمشده</div>
+                </div>
+                <div class="header-controls">
+                    <div class="difficulty-badge" id="difficultyBadge">نخبه</div>
+                    <button id="toggleTimerBtn" class="timer-toggle">⏱️ فعال‌سازی تایمر</button>
+                </div>
+                <div class="stage-indicator">
+                    <span id="stageLabel">مرحله</span>
+                    <span id="stageNumber">۱</span>
+                    <span>از</span>
+                    <span id="totalStages">۵</span>
+                </div>
+            </header>
 
-            <div class="action-buttons">
-                <button id="resetGameBtn" class="reset-btn">🔄 شروع مجدد</button>
-                <button id="continueBtn" class="continue-btn" disabled>➡ ادامه ماجرا</button>
-            </div>
-        </main>
+            <main>
+                <div class="atmosphere-sensor" id="atmosphereSensor">
+                    <span id="scentText">بوی باران و فلز زنگ‌زده</span>
+                    <span id="soundText">🔊 صدای قطره‌های باران روی آسفالت</span>
+                </div>
 
-        <footer>
-            <div class="clues-collected">
-                <span>🔍 سرنخ‌های یافت شده:</span>
-                <span id="cluesList">هیچ</span>
-            </div>
-        </footer>
+                <div class="story-panel" id="storyPanel">
+                    <div class="atmosphere-line"></div>
+                    <div class="narrative-text" id="narrativeText"></div>
+                    <div class="clue-hint" id="clueHint"></div>
+                </div>
+
+                <div class="mystery-box">
+                    <div class="puzzle-title" id="puzzleTitle">معمای مرحله</div>
+                    <div class="puzzle-question" id="puzzleQuestion"></div>
+                    <div class="options-container" id="optionsContainer"></div>
+                </div>
+
+                <div class="feedback-area" id="feedbackArea"></div>
+
+                <div class="action-buttons">
+                    <button id="resetGameBtn" class="reset-btn">🔄 شروع مجدد</button>
+                    <button id="continueBtn" class="continue-btn" disabled>➡ ادامه ماجرا</button>
+                </div>
+            </main>
+
+            <footer>
+                <div class="clues-collected">
+                    <span>📜 دفترچه سرنخ‌ها:</span>
+                    <div id="cluesList" class="clues-list-scroll"></div>
+                </div>
+            </footer>
+        </div>
     </div>
 
     <script src="script.js"></script>

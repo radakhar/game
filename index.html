@@ -3,16 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <title>رد آخر | شهر زوال - بازی معمایی کارآگاهی</title>
-    <meta name="description" content="بازی معمایی رد آخر - در شهر رازآلود زوال، به عنوان کارآگاه پرونده‌های جنایی را حل کن. ۳۰ مرحله چالش‌برانگیز با داستان‌های تاریک و معمایی">
-    <meta name="keywords" content="بازی معمایی, بازی کارآگاهی, رازآلود, نوآر, رد آخر, شهر زوال, معمای جنایی">
+    <title>رد آخر: شهر زوال - بازی معمایی کارآگاهی</title>
+    <meta name="description" content="بازی معمایی رد آخر - در شهر رازآلود زوال، به عنوان کارآگاه پرونده‌های جنایی را حل کن. مراحل چالش‌برانگیز با داستان‌های تاریک و معمایی">
+    <meta name="keywords" content="بازی معمایی, بازی کارآگاهی, رازآلود, نوآر, رد آخر, شهر زوال, معمای جنایی, رد آخر">
     <meta name="author" content="Rad Akhar">
     <meta name="robots" content="index, follow">
     <meta property="og:title" content="رد آخر - بازی معمایی شهر زوال">
-    <meta property="og:description" content="در تاریکی شب، حقیقت را پیدا کن. یک بازی معمایی نوآر با ۳۰ مرحله جذاب">
+    <meta property="og:description" content="بازی معمایی رد آخر - در شهر رازآلود زوال، به عنوان کارآگاه پرونده‌های جنایی را حل کن. مراحل چالش‌برانگیز با داستان‌های تاریک و معمایی">
     <meta property="og:type" content="website">
     <meta name="theme-color" content="#0a0806">
-    <link rel="icon" type="image/png" href="https://uploadkon.ir/uploads/5b1130_262332a6a4-b82b-4f17-be0e-bed0bb91db40.png" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 100 100\'%3E%3Ccircle cx=\'50\' cy=\'50\' r=\'45\' fill=\'%233a2a20\'/%3E%3Ctext x=\'50\' y=\'65\' text-anchor=\'middle\' fill=\'%23c48a6a\' font-size=\'40\'%3E🕵️%3C/text%3E%3C/svg%3E'">
     <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <style>
         * {
@@ -25,10 +24,9 @@
             font-family: 'Vazirmatn', sans-serif;
             background: #050302;
             min-height: 100vh;
-            overflow-x: hidden;
+            overflow: hidden;
         }
 
-        /* لودینگ */
         .loading-screen {
             position: fixed;
             top: 0;
@@ -48,23 +46,48 @@
         }
 
         .loading-logo {
-            font-size: 3rem;
+            font-size: 3.2rem;
             font-weight: 900;
-            background: linear-gradient(135deg, #e0c8a8, #c48a6a);
+            letter-spacing: 8px;
+            margin-bottom: 25px;
+            position: relative;
+            display: inline-block;
+            background: linear-gradient(135deg, #e8d5b5 0%, #c48a6a 40%, #8a5a3a 100%);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
-            letter-spacing: 5px;
-            margin-bottom: 20px;
+            text-shadow: 0 0 30px rgba(200,120,70,0.3);
+            animation: titleGlow 2s ease-in-out infinite;
+        }
+
+        @keyframes titleGlow {
+            0%, 100% { filter: drop-shadow(0 0 2px rgba(200,120,70,0.3)); letter-spacing: 8px; }
+            50% { filter: drop-shadow(0 0 12px rgba(200,120,70,0.6)); letter-spacing: 10px; }
+        }
+
+        .loading-logo::after {
+            content: 'رَدِّ آخَر';
+            position: absolute;
+            top: 0;
+            right: 0;
+            left: 0;
+            background: linear-gradient(135deg, #e8d5b5 0%, #c48a6a 40%, #8a5a3a 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            filter: blur(8px);
+            opacity: 0.4;
+            z-index: -1;
         }
 
         .loading-spinner {
-            width: 50px;
-            height: 50px;
-            border: 3px solid #3a2a20;
+            width: 45px;
+            height: 45px;
+            border: 2px solid #3a2a20;
             border-top-color: #c48a6a;
+            border-right-color: #8a5a3a;
             border-radius: 50%;
-            margin: 0 auto 15px;
+            margin: 0 auto 18px;
             animation: spin 0.8s linear infinite;
         }
 
@@ -74,11 +97,11 @@
 
         .loading-text {
             color: #8a7a6a;
-            font-size: 0.8rem;
-            letter-spacing: 2px;
+            font-size: 0.75rem;
+            letter-spacing: 3px;
+            font-weight: 300;
         }
 
-        /* صفحه خوش‌آمدگویی */
         .welcome-screen {
             position: fixed;
             top: 0;
@@ -93,6 +116,7 @@
             opacity: 0;
             visibility: hidden;
             transition: opacity 0.5s ease, visibility 0.5s;
+            overflow: hidden;
         }
 
         .welcome-screen.show {
@@ -101,27 +125,28 @@
         }
 
         .welcome-card {
-            max-width: 550px;
+            max-width: 520px;
             background: #0f0d0b;
-            border: 1px solid #3a2a20;
-            border-radius: 28px;
-            padding: 40px 35px;
+            border: 1px solid #4a3020;
+            border-radius: 24px;
+            padding: 35px 32px;
             margin: 20px;
             text-align: center;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+            box-shadow: 0 25px 45px rgba(0,0,0,0.5);
+            max-height: 90vh;
+            overflow-y: auto;
         }
 
-        .welcome-icon {
-            width: 80px;
-            height: 80px;
-            margin: 0 auto 20px;
+        .welcome-card::-webkit-scrollbar {
+            width: 3px;
+        }
+
+        .welcome-card::-webkit-scrollbar-track {
             background: #1a120c;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2.5rem;
-            border: 1px solid #8a5a3a;
+        }
+
+        .welcome-card::-webkit-scrollbar-thumb {
+            background: #6a4a2a;
         }
 
         .welcome-title {
@@ -131,36 +156,38 @@
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
+            letter-spacing: 3px;
         }
 
         .welcome-sub {
-            font-size: 0.7rem;
+            font-size: 0.65rem;
             color: #8a6a4a;
-            margin-bottom: 25px;
-            letter-spacing: 2px;
+            margin-bottom: 22px;
+            letter-spacing: 3px;
         }
 
         .welcome-text {
-            font-size: 0.9rem;
+            font-size: 0.88rem;
             line-height: 1.9;
             color: #cec2b4;
             text-align: justify;
-            margin-bottom: 30px;
+            margin-bottom: 28px;
         }
 
         .start-btn {
             background: linear-gradient(95deg, #7a3a2a, #5a2a18);
             border: none;
             color: #f0e0d0;
-            padding: 14px 35px;
+            padding: 13px 38px;
             border-radius: 50px;
             font-family: inherit;
-            font-size: 1rem;
+            font-size: 0.95rem;
             font-weight: 700;
             cursor: pointer;
             transition: 0.2s;
             box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            letter-spacing: 1px;
         }
 
         .start-btn:hover {
@@ -183,18 +210,17 @@
 <body>
     <div class="loading-screen" id="loadingScreen">
         <div class="loading-content">
-            <div class="loading-logo">رد آخر</div>
+            <div class="loading-logo">رَدِّ آخَر</div>
             <div class="loading-spinner"></div>
-            <div class="loading-text">بارگذاری پرونده‌ها...</div>
+            <div class="loading-text">بارگذاری پرونده‌ها</div>
         </div>
     </div>
 
     <div class="vignette-welcome"></div>
     <div class="welcome-screen" id="welcomeScreen">
         <div class="welcome-card">
-            <div class="welcome-icon">🕵️</div>
             <div class="welcome-title">شهر زوال</div>
-            <div class="welcome-sub">به تاریکی خوش آمدید</div>
+            <div class="welcome-sub"> به ردِ آخر خوش آمدید</div>
             <div class="welcome-text">
                 به شهر رازآلود زَوال خوش آمدید! جایی که تاریکی شب، رازهای پنهان را در خود جای داده و سایه‌ها، قصه‌های ناگفته‌ای را زمزمه می‌کنند. در بازی "رد آخر"، شما در نقش یک کارآگاه جوان و باهوش، مأموریت دارید تا در دل خیابان‌های پر پیچ و خم پایتخت، پرونده‌های جنایی پیچیده را حل کنید و پرده از راز جنایتکاران مرموز بردارید.
                 <br><br>

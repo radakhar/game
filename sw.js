@@ -1,4 +1,4 @@
-const CACHE_NAME = 'radakhar-game-v1';
+const CACHE_NAME = 'radakhar-game-v2';
 
 const urlsToCache = [
   '/game/',
@@ -6,12 +6,12 @@ const urlsToCache = [
   '/game/style.css',
   '/game/script.js',
   '/game/manifest.json',
-  'https://uploadkon.ir/uploads/83fc31_26Icon-اصلی.png',
-  'https://uploadkon.ir/uploads/12dc31_26Icon478.png',
-  'https://uploadkon.ir/uploads/51e931_26Icon974.png',
-  'https://uploadkon.ir/uploads/109c31_26Screenshot2.jpg',
-  'https://uploadkon.ir/uploads/6d0331_26Screenshot3.jpg',
-  'https://uploadkon.ir/uploads/c4fe31_26Screenshot6.jpg'
+  'https://uploadkon.ir/uploads/c6c531_26Icon-اصلی.png',
+  'https://uploadkon.ir/uploads/dcfa31_26Icon478.png',
+  'https://uploadkon.ir/uploads/76a631_26Icon974.png',
+  'https://uploadkon.ir/uploads/dbab31_26Screenshot12.jpg',
+  'https://uploadkon.ir/uploads/08c431_26Screenshot23.jpg',
+  'https://uploadkon.ir/uploads/876931_26Screenshot86.jpg'
 ];
 
 self.addEventListener('install', event => {

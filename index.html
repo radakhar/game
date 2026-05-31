@@ -13,6 +13,10 @@
     <meta property="og:type" content="website">
     <meta name="theme-color" content="#0a0806">
     <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="manifest" href="/game/manifest.json">
+    <meta name="theme-color" content="#d4a017">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <style>
         * {
             margin: 0;
@@ -248,6 +252,20 @@
                 window.location.href = 'game.html';
             });
         });
+    </script>
+    <script>
+// ثبت Service Worker برای PWA
+if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/game/sw.js')
+            .then(registration => {
+                console.log('Service Worker ثبت شد:', registration.scope);
+            })
+            .catch(error => {
+                console.log('خطا در ثبت Service Worker:', error);
+            });
+    });
+}
     </script>
 </body>
 </html>

@@ -6,12 +6,12 @@ const urlsToCache = [
   '/game/style.css',
   '/game/script.js',
   '/game/manifest.json',
-  '/game/icons/Icon-اصلی.png',
-  '/game/icons/Icon478.png',
-  '/game/icons/Icon974.png',
-  '/game/screenshots/Screenshot12.png',
-  '/game/screenshots/Screenshot23.png',
-  '/game/screenshots/Screenshot86.png'
+  'https://uploadkon.ir/uploads/83fc31_26Icon-اصلی.png',
+  'https://uploadkon.ir/uploads/12dc31_26Icon478.png',
+  'https://uploadkon.ir/uploads/51e931_26Icon974.png',
+  'https://uploadkon.ir/uploads/109c31_26Screenshot2.jpg',
+  'https://uploadkon.ir/uploads/6d0331_26Screenshot3.jpg',
+  'https://uploadkon.ir/uploads/c4fe31_26Screenshot6.jpg'
 ];
 
 self.addEventListener('install', event => {
@@ -39,11 +39,6 @@ self.addEventListener('activate', event => {
 self.addEventListener('fetch', event => {
   event.respondWith(
     caches.match(event.request)
-      .then(response => {
-        if (response) {
-          return response;
-        }
-        return fetch(event.request);
-      })
+      .then(response => response || fetch(event.request))
   );
 });

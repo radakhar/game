@@ -1,6 +1,6 @@
 {
-  "name": "رد آخر - بازی معمایی شهر زوال",
-  "short_name": "zaval-ردآخر",
+  "name": "رد آخر-zaval",
+  "short_name": "رد آخر",
   "description": "بازی معمایی کارآگاهی در شهر زوال - با دنبال کردن سرنخ‌ها و حل معماها، راز جنایت‌ها را کشف کن",
   "start_url": "/game/",
   "display": "standalone",
@@ -9,50 +9,35 @@
   "theme_color": "#d4a017",
   "icons": [
     {
-      "src": "icons/icon-72.png",
-      "sizes": "72x72",
+      "src": "https://uploadkon.ir/uploads/83fc31_26Icon-اصلی.png",
+      "sizes": "512x512",
       "type": "image/png",
       "purpose": "any maskable"
     },
     {
-      "src": "icons/icon-96.png",
-      "sizes": "96x96",
+      "src": "https://uploadkon.ir/uploads/12dc31_26Icon478.png",
+      "sizes": "478x478",
       "type": "image/png"
     },
     {
-      "src": "icons/icon-128.png",
-      "sizes": "128x128",
-      "type": "image/png"
-    },
-    {
-      "src": "icons/icon-144.png",
-      "sizes": "144x144",
-      "type": "image/png"
-    },
-    {
-      "src": "icons/icon-152.png",
-      "sizes": "152x152",
-      "type": "image/png"
-    },
-    {
-      "src": "icons/icon-192.png",
-      "sizes": "192x192",
-      "type": "image/png"
-    },
-    {
-      "src": "icons/icon-384.png",
-      "sizes": "384x384",
-      "type": "image/png"
-    },
-    {
-      "src": "icons/icon-512.png",
-      "sizes": "512x512",
+      "src": "https://uploadkon.ir/uploads/51e931_26Icon974.png",
+      "sizes": "974x974",
       "type": "image/png"
     }
   ],
   "screenshots": [
     {
-      "src": "screenshots/gameplay1.jpg",
+      "src": "https://uploadkon.ir/uploads/109c31_26Screenshot2.jpg",
+      "sizes": "1080x1920",
+      "type": "image/jpeg"
+    },
+    {
+      "src": "https://uploadkon.ir/uploads/6d0331_26Screenshot3.jpg",
+      "sizes": "1080x1920",
+      "type": "image/jpeg"
+    },
+    {
+      "src": "https://uploadkon.ir/uploads/c4fe31_26Screenshot6.jpg",
       "sizes": "1080x1920",
       "type": "image/jpeg"
     }

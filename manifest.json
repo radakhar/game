@@ -1,7 +1,7 @@
 {
   "name": "رد آخر-zaval",
   "short_name": "رد آخر",
-  "description": "بازی معمایی کارآگاهی در شهر زوال - با دنبال کردن سرنخ‌ها و حل معماها، راز جنایت‌ها را کشف کن",
+  "description": "🎭 بازی معمایی و کارآگاهی ردا آخر: در شهر رازآلود زوال، نقش یک کارآگاه جوان را ایفا کن. پرونده‌های جنایی را حل کن، از مظنونین بازجویی کن، معماهای پیچیده رو حل کن و حقیقت رو آشکار کن!",
   "start_url": "/game/",
   "display": "standalone",
   "orientation": "portrait",
@@ -9,40 +9,43 @@
   "theme_color": "#d4a017",
   "icons": [
     {
-      "src": "https://uploadkon.ir/uploads/c6c531_26Icon-اصلی.png",
+      "src": "icons/Icon-asli.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any maskable"
     },
     {
-      "src": "https://uploadkon.ir/uploads/dcfa31_26Icon478.png",
+      "src": "icons/Icon478.png",
       "sizes": "478x478",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any"
     },
     {
-      "src": "https://uploadkon.ir/uploads/76a631_26Icon974.png",
+      "src": "icons/Icon974.png",
       "sizes": "974x974",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any"
     }
   ],
   "screenshots": [
     {
-      "src": "https://uploadkon.ir/uploads/dbab31_26Screenshot12.jpg",
+      "src": "screenshots/Screenshot12.jpg",
       "sizes": "1080x1920",
       "type": "image/jpeg"
     },
     {
-      "src": "https://uploadkon.ir/uploads/08c431_26Screenshot23.jpg",
+      "src": "screenshots/Screenshot23.jpg",
       "sizes": "1080x1920",
       "type": "image/jpeg"
     },
     {
-      "src": "https://uploadkon.ir/uploads/876931_26Screenshot86.jpg",
+      "src": "screenshots/Screenshot86.jpg",
       "sizes": "1080x1920",
       "type": "image/jpeg"
     }
   ],
   "categories": ["games", "puzzle"],
   "lang": "fa",
-  "dir": "rtl"
+  "dir": "rtl",
+  "prefer_related_applications": false
 }

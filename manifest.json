@@ -16,13 +16,13 @@
     },
     {
       "src": "icons/Icon478.png",
-      "sizes": "478x478",
+      "sizes": "384x384",
       "type": "image/png",
       "purpose": "any"
     },
     {
       "src": "icons/Icon974.png",
-      "sizes": "974x974",
+      "sizes": "320x320",
       "type": "image/png",
       "purpose": "any"
     }
@@ -30,17 +30,17 @@
   "screenshots": [
     {
       "src": "screenshots/Screenshot12.jpg",
-      "sizes": "1080x1920",
+      "sizes": "1920x1006",
       "type": "image/jpeg"
     },
     {
       "src": "screenshots/Screenshot23.jpg",
-      "sizes": "1080x1920",
+      "sizes": "1920x963",
       "type": "image/jpeg"
     },
     {
       "src": "screenshots/Screenshot86.jpg",
-      "sizes": "1080x1920",
+      "sizes": "1920x975",
       "type": "image/jpeg"
     }
   ],

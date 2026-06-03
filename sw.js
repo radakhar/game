@@ -12,6 +12,7 @@ const urlsToCache = [
   '/game/screenshots/Screenshot12.jpg',
   '/game/screenshots/Screenshot23.jpg',
   '/game/screenshots/Screenshot86.jpg'
+  '/game/screenshots/Screenshot44.jpg'
 ];
 
 self.addEventListener('install', event => {

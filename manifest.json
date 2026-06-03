@@ -30,17 +30,17 @@
   "screenshots": [
     {
       "src": "screenshots/Screenshot12.jpg",
-      "sizes": "1920x1006",
+      "sizes": "1006x1920",
       "type": "image/jpeg"
     },
     {
       "src": "screenshots/Screenshot23.jpg",
-      "sizes": "1920x963",
+      "sizes": "963x1920",
       "type": "image/jpeg"
     },
     {
       "src": "screenshots/Screenshot86.jpg",
-      "sizes": "1920x975",
+      "sizes": "975x1920",
       "type": "image/jpeg"
     }
   ],

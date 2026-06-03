@@ -533,11 +533,3 @@ body {
         max-height: 450px;
     }
 }
-body {
-  overscroll-behavior: contain;
-}
-
-html {
-  margin: 0;
-  overscroll-behavior: none;
-}

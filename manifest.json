@@ -42,6 +42,11 @@
       "src": "screenshots/Screenshot86.jpg",
       "sizes": "975x1920",
       "type": "image/jpeg"
+    },
+    {
+      "src": "screenshots/Screenshot44.jpg",
+      "sizes": "1902x1920",
+      "type": "image/jpeg"
     }
   ],
   "categories": ["games", "puzzle"],

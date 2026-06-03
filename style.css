@@ -533,3 +533,7 @@ body {
         max-height: 450px;
     }
 }
+
+body {
+  overscroll-behavior: contain;
+}

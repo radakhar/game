@@ -1,8 +1,9 @@
-const CACHE_NAME = 'radakhar-game-v4';
+const CACHE_NAME = 'radakhar-game-v5';
 
 const urlsToCache = [
   '/game/',
   '/game/index.html',
+  '/game/game.html',
   '/game/style.css',
   '/game/script.js',
   '/game/manifest.json',
